@@ -14,3 +14,7 @@ ssafy final project
 헬로
 안녕하세요
 
+# hotfix 
+
+> 수정 사항1
+> 수정 사항2
