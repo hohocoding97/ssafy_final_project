@@ -36,8 +36,13 @@ INSTALLED_APPS = [
     'community',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders',
     'dj_rest_auth',
+    'corsheaders',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
 
 REST_FRAMEWORK = {
     # Authentication
@@ -57,6 +64,8 @@ REST_FRAMEWORK = {
     # ],
 }
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -66,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'movie_project.urls'
@@ -155,11 +165,11 @@ environ.Env.read_env()
 
 
 # DEBUG 설정
-DEBUG = env('DEBUG')
+# DEBUG=env('DEBUG')
 
 # .env 파일에서 가져올 환경 변수 추가
-TMDB_API_KEY1 = env('TMDB_API_KEY1')
+TMDB_API_KEY1=env('TMDB_API_KEY1')
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL='accounts.User'
 #accounts 앱의 User 클래스
 
