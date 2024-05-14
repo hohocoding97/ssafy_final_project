@@ -1,0 +1,205 @@
+{
+    "movieListResult": {
+        "totCnt": 2114,
+        "source": "영화진흥위원회",
+        "movieList": [
+            {
+                "movieCd": "20240162",
+                "movieNm": "빼꼼: 미션 투 마스",
+                "movieNmEn": "Backkom Bear: Mars Mission",
+                "prdtYear": "2023",
+                "openDt": "20240601",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "중국",
+                "genreAlt": "애니메이션",
+                "repNationNm": "중국",
+                "repGenreNm": "애니메이션",
+                "directors": [],
+                "companys": []
+            },
+            {
+                "movieCd": "20236674",
+                "movieNm": "이프: 상상의 친구",
+                "movieNmEn": "IF",
+                "prdtYear": "2024",
+                "openDt": "20240515",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "미국",
+                "genreAlt": "코미디,드라마,가족",
+                "repNationNm": "미국",
+                "repGenreNm": "코미디",
+                "directors": [
+                    {
+                        "peopleNm": "존 크래신스키"
+                    }
+                ],
+                "companys": []
+            },
+            {
+                "movieCd": "20249317",
+                "movieNm": "악마와의 토크쇼",
+                "movieNmEn": "Late Night with the Devil",
+                "prdtYear": "2023",
+                "openDt": "20240508",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉",
+                "nationAlt": "호주",
+                "genreAlt": "공포(호러)",
+                "repNationNm": "호주",
+                "repGenreNm": "공포(호러)",
+                "directors": [],
+                "companys": []
+            },
+            {
+                "movieCd": "20235546",
+                "movieNm": "8일 만에 죽은 괴수의 12일 이야기",
+                "movieNmEn": "The 12 Day Tale Of The Monster That Died In 8",
+                "prdtYear": "2023",
+                "openDt": "20240516",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "일본",
+                "genreAlt": "드라마",
+                "repNationNm": "일본",
+                "repGenreNm": "드라마",
+                "directors": [
+                    {
+                        "peopleNm": "이와이 슌지"
+                    }
+                ],
+                "companys": []
+            },
+            {
+                "movieCd": "20240205",
+                "movieNm": "내 손끝에 너의 온도가 닿을 때",
+                "movieNmEn": "The Time Of Fever",
+                "prdtYear": "2024",
+                "openDt": "20240515",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "한국",
+                "genreAlt": "멜로/로맨스",
+                "repNationNm": "한국",
+                "repGenreNm": "멜로/로맨스",
+                "directors": [
+                    {
+                        "peopleNm": "양경희"
+                    }
+                ],
+                "companys": [
+                    {
+                        "companyCd": "20230701",
+                        "companyNm": "주식회사 넘버쓰리픽쳐스"
+                    }
+                ]
+            },
+            {
+                "movieCd": "20249507",
+                "movieNm": "극장판 하이큐!! 쓰레기장의 결전",
+                "movieNmEn": "Haikyu!!: The Dumpster Battle",
+                "prdtYear": "2024",
+                "openDt": "20240515",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "일본",
+                "genreAlt": "애니메이션",
+                "repNationNm": "일본",
+                "repGenreNm": "애니메이션",
+                "directors": [
+                    {
+                        "peopleNm": "미츠나카 스스무"
+                    }
+                ],
+                "companys": []
+            },
+            {
+                "movieCd": "20248615",
+                "movieNm": "금지된 장난 ",
+                "movieNmEn": "The Forbidden Play",
+                "prdtYear": "2023",
+                "openDt": "20240605",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "일본",
+                "genreAlt": "공포(호러)",
+                "repNationNm": "일본",
+                "repGenreNm": "공포(호러)",
+                "directors": [
+                    {
+                        "peopleNm": "나카타 히데오"
+                    }
+                ],
+                "companys": []
+            },
+            {
+                "movieCd": "20240189",
+                "movieNm": "1초 앞, 1초 뒤",
+                "movieNmEn": "One Second Ahead, One Second Behind",
+                "prdtYear": "2023",
+                "openDt": "20240619",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "일본",
+                "genreAlt": "멜로/로맨스,판타지",
+                "repNationNm": "일본",
+                "repGenreNm": "멜로/로맨스",
+                "directors": [
+                    {
+                        "peopleNm": "야마시타 노부히로"
+                    }
+                ],
+                "companys": []
+            },
+            {
+                "movieCd": "20232138",
+                "movieNm": "미지수",
+                "movieNmEn": "Unknown",
+                "prdtYear": "2023",
+                "openDt": "20240508",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉",
+                "nationAlt": "한국",
+                "genreAlt": "드라마,멜로/로맨스,가족,SF,판타지",
+                "repNationNm": "한국",
+                "repGenreNm": "드라마",
+                "directors": [
+                    {
+                        "peopleNm": "이돈구"
+                    }
+                ],
+                "companys": [
+                    {
+                        "companyCd": "20187461",
+                        "companyNm": "디케이 프로덕션"
+                    }
+                ]
+            },
+            {
+                "movieCd": "20248465",
+                "movieNm": "하이재킹",
+                "movieNmEn": "",
+                "prdtYear": "2023",
+                "openDt": "20240621",
+                "typeNm": "장편",
+                "prdtStatNm": "개봉예정",
+                "nationAlt": "한국",
+                "genreAlt": "범죄",
+                "repNationNm": "한국",
+                "repGenreNm": "범죄",
+                "directors": [
+                    {
+                        "peopleNm": "김성한"
+                    }
+                ],
+                "companys": [
+                    {
+                        "companyCd": "20140593",
+                        "companyNm": "(주)퍼펙트스톰필름"
+                    }
+                ]
+            }
+        ]
+    }
+}
