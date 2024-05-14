@@ -140,3 +140,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+import environ
+
+env = environ.Env(
+    # 선언된 환경 변수의 기본 값 설정
+    DEBUG=(bool, False)
+)
+
+# .env 파일 경로 지정 (기본적으로 프로젝트 루트의 .env 파일을 사용합니다.)
+environ.Env.read_env()
+
+
+# DEBUG 설정
+DEBUG = env('DEBUG')
+
+# .env 파일에서 가져올 환경 변수 추가
+TMDB_API_KEY1 = env('TMDB_API_KEY1')
