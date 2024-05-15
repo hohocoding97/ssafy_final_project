@@ -3,10 +3,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-
-
-
-
 ###################db에 영화 정보 가져오고 저장할 함수#######################
 import requests
 from .models import Movie, Actor, Genre, Director
