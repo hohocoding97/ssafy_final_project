@@ -16,5 +16,10 @@ ssafy final project
 
 # hotfix 
 
-> 수정 사항1
-> 수정 사항2
+수정 사항1
+
+수정 사항2
+
+## tmdb 영화 정보가져오기
+
+ 

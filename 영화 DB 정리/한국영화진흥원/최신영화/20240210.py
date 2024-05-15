@@ -14,7 +14,7 @@ payload = {
     "weekGb": "0",  # 주간 (월~일)
     "itemPerPage": "10",  # 결과 ROW의 개수
     "multiMovieYn": "N",  # 상업영화
-    "repNationCd": "K",  # 한국영화
+    # "repNationCd": "K",  # 한국영화
     "wideAreaCd": ""  # 전체 지역
 }
 
@@ -25,7 +25,7 @@ response = requests.get(base_url, params=payload)
 data = response.json()
 
 # JSON 파일로 저장
-with open('box_office_data_3.json', 'w', encoding='utf-8') as f:
+with open('box_office_data_5.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
 
 print("JSON 파일이 생성되었습니다.")
