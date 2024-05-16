@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
@@ -26,3 +28,8 @@ class Movie(models.Model):
   actors = models.ManyToManyField(Actor)
   genres = models.ManyToManyField(Genre)
   directors = models.ManyToManyField(Director)
+
+class UserRating(models.Model): #우리 웹사이트 이용자가 준 평점
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+  rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)]) # 1~10사이의 정수만
