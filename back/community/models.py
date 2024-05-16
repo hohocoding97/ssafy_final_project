@@ -7,5 +7,5 @@ class Article(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #게시글 작성자
     title = models.CharField(max_length=50)
     content = models.TextField()
-
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    updataed_at = models.DateTimeField(auto_now=True)

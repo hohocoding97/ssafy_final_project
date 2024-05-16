@@ -5,7 +5,7 @@ from django.db import models
 class Actor(models.Model):
   actor_code = models.IntegerField(primary_key=True) #영화배우의 코드를 pk로 사용
   actor_name = models.TextField()
-  profile_path = models.TextField()
+  profile_path = models.TextField(null=True)
 
 class Director(models.Model):
   director_code = models.IntegerField(primary_key=True)
@@ -26,5 +26,3 @@ class Movie(models.Model):
   actors = models.ManyToManyField(Actor)
   genres = models.ManyToManyField(Genre)
   directors = models.ManyToManyField(Director)
-
-  

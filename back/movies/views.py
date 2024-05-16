@@ -72,7 +72,7 @@ def fetch_and_save_popular_movies(request):
     
 
 
-###################한국영호진흥위원회 박스오피스 데이터 가져오기##########################
+###################한국영화진흥위원회 박스오피스 데이터 가져오기(미완..)##########################
 
 def save_kobis_movie(request, data):
     dates = make_date()
