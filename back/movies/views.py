@@ -6,8 +6,6 @@ from rest_framework import status
 from .models import Movie, UserRating, MovieComment
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 
-
-
 @api_view(['GET'])
 def movie_list(request):
     movies = Movie.objects.all()
@@ -30,18 +28,20 @@ def give_a_rating(request, movie_pk):   # 웹 사용자가 평점주기
             serializer.save(movie=movie, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# 영화 한줄평 생성하기
-@api_view(['POST', 'PUT'])
+# 영화 한줄평 조회하기, 영화 한줄평 생성하기
+@api_view(['GET','POST'])
 @permission_classes([IsAuthenticated])
-def movie_comment_create(request, movie_pk):  
+def movie_comment(request, movie_pk):  
     movie = Movie.objects.get(pk=movie_pk)
     if request.method == 'POST':
         serializer = movieCommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(movie=movie, user=request.user)
             return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = movieCommentSerializer()
+    elif request.method == 'GET':
+        movies = movie.moviecomment_set.all() # 역참조해서 현 영화의 한줄평들을 다 가져오기
+        serializer = movieCommentSerializer(movies, many=True) 
+        return Response(serializer.data)
 
 #영화 한줄평 삭제!!!
 @api_view(['DELETE', 'PUT'])
