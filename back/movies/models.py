@@ -19,7 +19,7 @@ class Genre(models.Model):
   
 class Movie(models.Model):
   code = models.IntegerField(primary_key=True) #영화의 코드를 pk로 사용
-  title = models.CharField(max_length = 30)
+  title = models.CharField(max_length = 40)
   score = models.FloatField()
   overview = models.TextField()
   popularity = models.FloatField()
@@ -33,3 +33,8 @@ class UserRating(models.Model): #우리 웹사이트 이용자가 준 평점
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
   rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)]) # 1~10사이의 정수만
+
+class MovieComment(models.Model): #영화에 대한 댓글
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+  content = models.CharField(max_length = 50)
