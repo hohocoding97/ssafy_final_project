@@ -8,6 +8,7 @@ class Actor(models.Model):
   actor_code = models.IntegerField(primary_key=True) #영화배우의 코드를 pk로 사용
   actor_name = models.TextField()
   profile_path = models.TextField(null=True)
+  popularity = models.FloatField()
 
 class Director(models.Model):
   director_code = models.IntegerField(primary_key=True)

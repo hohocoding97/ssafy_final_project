@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .models import Movie, UserRating, MovieComment, Actor, Genre
+from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 
 @api_view(['GET'])
@@ -130,14 +130,29 @@ def save_actors(request):
         response = requests.get(url, params=params)
         data = response.json()
         actors = []
-        for actor_data in data['cast']:
-            try:
-                Actor.objects.get(pk=actor_data['id'])
-            except:
-                Actor.objects.create(actor_code=actor_data['id'], actor_name=actor_data['name'] ,profile_path=actor_data['profile_path'])
-                if actor_data['id'] not in movie.actors.all():
-                    actors.append(actor_data['id'])
+        directors = []
+        for person_data in data['cast']:
+            if person_data['known_for_department'] == 'Acting':
+                try:
+                    Actor.objects.get(pk=person_data['id'])
+                except:                    
+                    Actor.objects.create(actor_code=person_data['id'], 
+                                        actor_name=person_data['name'],
+                                        profile_path=person_data['profile_path'],
+                                        popularity=person_data['popularity'])
+                    if person_data['id'] not in movie.actors.all():
+                        actors.append(person_data['id'])
+
+            elif person_data['known_for_department'] == 'Directing':
+                try:
+                    Director.objects.get(pk=person_data['id'])
+                except:
+                    Director.objects.create(director_code=person_data['id'], 
+                                            director_name=person_data['name'],)
+                    if person_data['id'] not in movie.directors.all():
+                        directors.append(person_data['id'])
         movie.actors.set(actors)
+        movie.directors.set(directors)
 
 def save_genres(request):
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
