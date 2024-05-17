@@ -1,9 +1,11 @@
+from django.http import JsonResponse
 from django.shortcuts import render
+from django.templatetags.i18n import language
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .models import Movie, UserRating, MovieComment
+from .models import Movie, UserRating, MovieComment, Actor, Genre
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 
 @api_view(['GET'])
@@ -119,44 +121,38 @@ def fetch_and_save_popular_movies(request):
                     save_movie_data(request, movie_data)
     
 
-
-###################한국영화진흥위원회 박스오피스 데이터 가져오기(미완..)##########################
-
-def save_kobis_movie(request, data):
-    dates = make_date()
-
-    return
-
-def fectch_and_save_kobis_movie(request):
-    movie_dict = {}
-    api_key = "c749cadac1d9f0a8006aa2267c7210e2"
-    base_url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json"
-    dates = make_date()
-    for date in dates:
-        payload = {
-        "key": api_key,
-        "targetDt": date,  # 조회하고자 하는 날짜 (예시 날짜)
-        "weekGb": "0",  # 주간 (월~일)
-        "itemPerPage": "10",  # 결과 ROW의 개수(최대 : 10개)
-        "multiMovieYn": "N",  # 상업영화
-        # "repNationCd": "K",  # 한국영화(default:전체)
-        # "wideAreaCd": ""  # 전체 지역
-        }
-        response = requests.get(base_url, params=payload)
+def save_actors(request):
+    api_key='90aeb74b35c6573b54ef820f2e4944f5'
+    movies = Movie.objects.all()
+    for movie in movies:
+        url = f'https://api.themoviedb.org/3/movie/{movie.pk}/credits'
+        params = { 'api_key': api_key, 'language': 'ko-KR'}
+        response = requests.get(url, params=params)
         data = response.json()
-        
-        for movie in data.get('weeklyBoxOfficeList'):
-            if movie_dict.get(movie.get('movieCd')): #만약 movieCd를 key로 하는 쌍이 있으면
-                movie['movieCd']
+        actors = []
+        for actor_data in data['cast']:
+            try:
+                Actor.objects.get(pk=actor_data['id'])
+            except:
+                Actor.objects.create(actor_code=actor_data['id'], actor_name=actor_data['name'] ,profile_path=actor_data['profile_path'])
+                if actor_data['id'] not in movie.actors.all():
+                    actors.append(actor_data['id'])
+        movie.actors.set(actors)
 
-def make_date(request):
-    # 시작일과 종료일 설정
-    start_date = datetime.date(2023, 1, 1)
-    end_date = datetime.date(2024, 1, 1)  # 2024년 1월 1일 전까지만
-
-    # 7일 간격으로 날짜 생성하여 리스트에 저장
-    dates_list = []
-    current_date = start_date
-    while current_date < end_date:
-        dates_list.append(current_date.strftime("%Y%m%d"))
-        current_date += datetime.timedelta(days=7)
+def save_genres(request):
+    api_key='90aeb74b35c6573b54ef820f2e4944f5'
+    movies = Movie.objects.all()
+    for movie in movies:
+        url = f'https://api.themoviedb.org/3/movie/{movie.pk}'
+        params = { 'api_key': api_key, 'language': 'ko-KR'}
+        response = requests.get(url, params=params)
+        data = response.json()
+        genres = []
+        for genre_data in data['genres']:
+            try:
+                Genre.objects.get(pk=genre_data['id'])
+            except:
+                Genre.objects.create(genre_code=genre_data['id'], genre_name=genre_data['name'])
+                if genre_data['id'] not in movie.genres.all():
+                    genres.append(genre_data['id'])
+        movie.genres.set(genres)

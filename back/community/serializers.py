@@ -19,8 +19,8 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
     read_only_fields = ('user',)
 
 class CommentListSerializer(serializers.ModelSerializer):
-  # username = serializers.CharField(source='user.username', read_only=True)
+  username = serializers.CharField(source='user.username', read_only=True)
   class Meta:
     model = Comment
     fields = '__all__'
-    read_only_fields = ('user',)
+    read_only_fields = ('user','article')

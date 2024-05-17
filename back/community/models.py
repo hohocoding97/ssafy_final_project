@@ -10,6 +10,7 @@ class Article(models.Model):
     updataed_at = models.DateTimeField(auto_now=True)
 
 class Comment(models.Model): #게시글 댓글
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #댓글 작성자
     content = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)

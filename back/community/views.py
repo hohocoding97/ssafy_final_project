@@ -1,4 +1,3 @@
-from functools import partial
 from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication,BasicAuthentication
@@ -6,11 +5,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Article
+from .models import Article, Comment
 from .serializers import ArticleListSerializer, ArticleDetailSerializer, CommentListSerializer
 
 
-
+#게시글 생성 또는 게시글리스트 조회
 @api_view(['GET','POST'])
 def ariticle_list(request):
   if request.method == 'GET':
@@ -51,14 +50,36 @@ def article_ud(request, article_pk):
 @api_view(['GET'])
 def comment_list(request, article_pk):
   if request.method == 'GET':
-    article = get_object_or_404(Article, pk=article_pk)
+    article = Article.objects.get(pk=article_pk)
     comments = article.comment_set.all()
     serializer = CommentListSerializer(comments, many=True)
     return Response(serializer.data)
 
 # 댓글 작성
-@api_view(['POST'])
+@api_view(['POST',])
 @permission_classes([IsAuthenticated])
-def create_comment(request):
-  pass
+def create_comment(request, article_pk):
+  if request.method == 'POST':
+    article = Article.objects.get(pk=article_pk)
+    serializer = CommentListSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+      serializer.save(user=request.user, article=article)
+      return Response(serializer.data)
+
+#댓글 수정, 삭제
+@api_view(['PUT','DELETE'])
+@permission_classes([IsAuthenticated])
+def comment_ud(request, comment_pk):
+  comment = Comment.objects.get(pk=comment_pk) 
+  if request.method == 'PUT':
+    serializer = CommentListSerializer(instance=comment,data=request.data, partial=True)
+    if serializer.is_valid(raise_exception=True):
+      serializer.save()
+      return Response(serializer.data)
+    
+  elif request.method == 'DELETE':
+    comment.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+  
+
 
