@@ -1,7 +1,7 @@
 <template>
     <!-- 프로필 변경 상단 -->
     <div class="Profile d-flex flex-column align-items-center">
-        <h3 style="margin-top: 10px;">프로필 변경</h3>
+        <h3 style="margin-top: 10px; font-weight: bold;">프로필 변경</h3>
         <div style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; margin-bottom : 10px; ">
             <img src="/src/assets/face.png" alt="User Image" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
@@ -40,12 +40,40 @@
                         <input type="submit" href = "#" value = 'MODIFY' class="btn btn-dark">
                     </div>
                     <div>
-                        <input type="submit" href = "#" value = '회원탈퇴' class="btn btn-secondary" style="margin-left: 300px; margin-top: 10px;">
+                    <input type="checkbox" id="layerPopup">
+                    <label for="layerPopup" style="margin-left: 300px;" class="btn btn-dark">
+                        회원탈퇴
+                    </label>
+                    <div id="layer_bg">
+                        <div id="popup">
+                            <h2>
+                               회원탈퇴 
+                                <label for="layerPopup">X</label>
+                            </h2>
+                            <p>회원 탈퇴를 신청하기 전, 다음 내용을 꼭 확인해 주세요</p>
+                            <p> - 고객 정보 및 서비스 이용 기록은 개인 정보 보호 처리 방침에 따라 삭제됩니다.</p>
+                            <p> - 회원 탈퇴 시 더 이상 Takofix(이하, 탁호픽스) 서비스 이용이 불가능하며, 탈퇴 처리 됩니다.</p>
+                            <div class="container mt-5">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="exampleCheckbox">
+                                    <label class="form-check-label" for="exampleCheckbox">
+                                        안내사항을 모두 확인하였으며, 이에 동의합니다.
+                                    </label>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <input type="submit" href = "#" value = '회원탈퇴' class="btn btn-dark">                           
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- 회원 탈퇴 팝업 구현 -->
+    
 
 </template>
 
@@ -54,5 +82,50 @@
 </script>
 
 <style scoped>
+#layerPopup {
+    display: none;
+}
 
+#layerPopup + label {
+    display:inline-block;
+    padding: 7px 14px;
+    background:#333;
+    color:#fff;
+}
+
+#layer_bg {
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+}
+
+#layer_bg > #popup {
+    position:absolute;
+    padding:15px;
+    box-sizing:border-box;
+    border-radius:15px; 
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:500px;
+    height:500px;
+    background:#fff;
+    box-shadow: 7px 7px 5px rgba(0,0,0,0.2); 
+}
+
+#layer_bg > #popup > h2 {
+    margin-bottom:25px;
+}
+
+#layer_bg > #popup > h2 > label {
+    float: right;
+}
+
+#layerPopup:checked + label + #layer_bg {
+    display:block;
+}
 </style>
