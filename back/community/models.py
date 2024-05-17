@@ -15,7 +15,7 @@ class Comment(models.Model): #게시글 댓글
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-class Reply(models.Model):
+class Reply(models.Model): #게시글 대댓글
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE) #댓글. 어디 댓글의 대댓글인지 알아야하니까
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #대댓글 작성자
     content = models.CharField(max_length=200)
