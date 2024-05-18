@@ -1,12 +1,7 @@
+from dataclasses import fields
 from rest_framework import serializers
-from .models import Movie, UserRating, MovieComment
-
-#영화 디테일 페이지에 필요
-class movieDetailSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Movie
-    # fields = '__all__'
-    exclude = ('actors', 'genres', 'directors') #일단 배우정보, 장르정보, 감독정보 없으니까 제외
+from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
+from django.contrib.auth import get_user_model
 
 #영화 한번에 쫙 보여 줄때
 class movieListSerializer(serializers.ModelSerializer):
@@ -27,3 +22,31 @@ class movieCommentSerializer(serializers.ModelSerializer):
     model = MovieComment
     fields ='__all__'
     read_only_fields = ('user', 'movie')
+
+# 배우 정보
+class ActorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Actor
+        fields = '__all__'
+# 장르 정보
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = '__all__'
+# 감독 정보
+class DirectorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Director
+        fields = '__all__'
+
+#영화 디테일 페이지에 필요
+class movieDetailSerializer(serializers.ModelSerializer):
+
+  actors = ActorSerializer(many=True, read_only=True)
+  genres = GenreSerializer(many=True, read_only=True)
+  directors = DirectorSerializer(many=True, read_only=True)
+
+  class Meta:
+    model = Movie
+    # fields = '__all__'
+    fields = '__all__'

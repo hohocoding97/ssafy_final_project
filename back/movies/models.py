@@ -2,8 +2,6 @@ from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
-
 class Actor(models.Model):
   actor_code = models.IntegerField(primary_key=True) #영화배우의 코드를 pk로 사용
   actor_name = models.TextField()

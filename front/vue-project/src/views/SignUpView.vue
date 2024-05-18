@@ -19,19 +19,15 @@
         </div>
         <div style="margin-bottom: 10px;"> 
           <label for="password1" style="margin-left: 20px;">PASSWORD : </label>
-          <input type="text" v-model.trim="password1" id="password1" placeholder="PW를 입력하세요." style="margin-left: 51px; width: 200px;">
+          <input type="password" v-model.trim="password1" id="password1" placeholder="PW를 입력하세요." style="margin-left: 51px; width: 200px;">
         </div>
         <div style="margin-bottom: 10px;">
           <label for="password2" style="margin-left: 20px;">PASSWORD 확인 : </label>
-          <input type="text" v-model.trim="password2" id="password2" placeholder="PW를 다시 입력하세요." style="margin-left: 13px; width: 200px;">
+          <input type="password" v-model.trim="password2" id="password2" placeholder="PW를 다시 입력하세요." style="margin-left: 13px; width: 200px;">
         </div>
-        <!-- <div style="margin-bottom: 10px;">
-          <label for="password2" style="margin-left: 20px;">NAME : </label>
-          <input type="text" v-model.trim="password2" id="password2" placeholder="이름을 입력하세요." style="margin-left: 90px; width: 200px;">
-        </div> -->
-        <!-- <div style="margin-bottom: 10px;">
-          <label for="password2" style="margin-left: 20px;">FAVORITE GENRE : </label>
-          <input type="text" v-model.trim="password2" id="password2" placeholder="영화취향을 입력하세요." style="margin-left: 10px; width: 200px;">
+        <!-- <div>
+          <label for="is_ckecked" style="margin-left: 20px;">비밀번호 보이기</label>
+          <input type="checkbox" name="is_ckecked" id="is_ckecked" v-model="is_checked">
         </div> -->
         <div style="text-align: center; margin-top: 30px;">
           <input type="submit" value = '회원가입' class="btn btn-dark">
@@ -50,6 +46,7 @@
   const username = ref(null)
   const password1 = ref(null)
   const password2 = ref(null)
+  const is_checked = ref(false)
   
   const signup = function() {
     const payload = {
