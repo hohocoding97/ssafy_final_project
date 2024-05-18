@@ -21,4 +21,4 @@ export const useCounterStore = defineStore('useCounterStore', () => {
   }
 
   return { API_URL, signup }
-})
+}, {persist: true})

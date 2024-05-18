@@ -1,8 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <img src="/src/assets/minitaco.png" alt="" width="30px" height="30px">
-    <a class="navbar-brand" href="#">Takofix</a>
+    <div @click="goHome" type="button">
+      <img src="/src/assets/minitaco.png" alt="" width="30px" height="30px">
+      <span class="navbar-brand">Takofix</span>
+    </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,12 +24,12 @@
       </ul>
       <ul class="navbar-nav me-3 mb-2 mb-lg-0 me-0 ">
         <li class="nav-item">
-          <a class="btn btn-dark" href="#" role="button">Sign up</a>
+          <RouterLink :to="{name:'SignUpView'}" class="btn btn-dark" role="button">Signup</RouterLink>
         </li>
       </ul>
       <ul class="navbar-nav me-3 mb-2 mb-lg-0 me-0 ">
         <li class="nav-item">
-          <a class="btn btn-dark" href="#" role="button">Login</a>
+          <RouterLink :to="{name:'LoginView'}" class="btn btn-dark" role="button">Login</RouterLink>
         </li>
       </ul>
       
@@ -37,7 +39,10 @@
 </template>
 
 <script setup>
-
+  import { RouterLink, RouterView, useRouter } from 'vue-router'
+  const router = useRouter()
+  const goHome = function() {router.push({name:'home'})} // Takofix눌렀을 때 홈 돌아가기
+  
 </script>
 
 <style scoped>

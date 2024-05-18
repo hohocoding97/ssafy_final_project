@@ -8,9 +8,9 @@
     </div>    
   </div>
   <!-- 회원가입 폼 -->
-  <div style="margin-top: 150px;">
+  <div style="margin-top: 100px;">
   <div style="display: flex; justify-content: center; align-items: center; height: 150px;">
-    <div class="card" style="width: 400px; height:400px; " >
+    <div class="card" style="width: 400px; height:300px; min-width: 400px;" >
       <form @submit.prevent="signup">
         <div style="margin-bottom: 10px;">
           <h3 style="text-align: center; margin-top: 30px; margin-bottom: 30px">CREATE ACCOUNT</h3>
@@ -19,22 +19,22 @@
         </div>
         <div style="margin-bottom: 10px;"> 
           <label for="password1" style="margin-left: 20px;">PASSWORD : </label>
-          <input type="text" v-model.trim="password1" id="password1" placeholder="PW를 입력하세요." style="margin-left: 50px; width: 200px;">
+          <input type="text" v-model.trim="password1" id="password1" placeholder="PW를 입력하세요." style="margin-left: 51px; width: 200px;">
         </div>
         <div style="margin-bottom: 10px;">
-          <label for="password2" style="margin-left: 20px;">PASSWORD : </label>
-          <input type="text" v-model.trim="password2" id="password2" placeholder="PW를 다시 입력하세요." style="margin-left: 50px; width: 200px;">
+          <label for="password2" style="margin-left: 20px;">PASSWORD 확인 : </label>
+          <input type="text" v-model.trim="password2" id="password2" placeholder="PW를 다시 입력하세요." style="margin-left: 13px; width: 200px;">
         </div>
-        <div style="margin-bottom: 10px;">
+        <!-- <div style="margin-bottom: 10px;">
           <label for="password2" style="margin-left: 20px;">NAME : </label>
           <input type="text" v-model.trim="password2" id="password2" placeholder="이름을 입력하세요." style="margin-left: 90px; width: 200px;">
-        </div>
-        <div style="margin-bottom: 10px;">
+        </div> -->
+        <!-- <div style="margin-bottom: 10px;">
           <label for="password2" style="margin-left: 20px;">FAVORITE GENRE : </label>
           <input type="text" v-model.trim="password2" id="password2" placeholder="영화취향을 입력하세요." style="margin-left: 10px; width: 200px;">
-        </div>
+        </div> -->
         <div style="text-align: center; margin-top: 30px;">
-          <input type="submit" href = "#" value = 'SUBMIT' class="btn btn-dark">
+          <input type="submit" value = '회원가입' class="btn btn-dark">
         </div>
       </form>
     </div>
@@ -44,7 +44,7 @@
 
 <script setup>
   import { ref } from 'vue';
-  import { useCounterStore } from '@/stores/counter'
+  import { useCounterStore } from '@/stores/userCounter'
 
   const store = useCounterStore()
   const username = ref(null)
