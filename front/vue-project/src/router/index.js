@@ -4,6 +4,7 @@ import MovieDetailView from '@/views/MovieDetailView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import LoginView from '@/views/LoginView.vue'
 import EditProfileView from '@/views/EditProfileView.vue'
+import Test from '@/views/Test.vue'
 
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/profile/edit',
       name: 'EditProfileView',
       component: EditProfileView
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test
     }
   ]
 })

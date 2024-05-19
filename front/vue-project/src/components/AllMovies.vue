@@ -23,11 +23,18 @@
     router.push({name:'movieDetail', params:{movieId:movieId}})
   }
   
+  // onMounted(() => {
+  //   if (!movieStore.movies.values) { // 처음 데이터 받을 때만 가져오도록
+  //     console.log('first')
+  //     movieStore.fetch_movies() 
+  //   } else console.log('not first')
+  // })
   onMounted(() => {
-    if (!movieStore.movies.values) { // 처음 데이터 받을 때만 가져오도록
-      console.log('first')
-      movieStore.fetch_movies() 
-    } else console.log('not first')
+    // if (!movieStore.movies.values) { // 처음 데이터 받을 때만 가져오도록
+    //   console.log('first')
+    //   movieStore.fetch_movies() 
+    // } else console.log('not first')
+    movieStore.fetch_movies()
   })
 </script>
 

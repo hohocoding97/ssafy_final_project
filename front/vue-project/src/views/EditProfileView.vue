@@ -112,7 +112,7 @@
     left:50%;
     transform:translate(-50%, -50%);
     width:500px;
-    height:500px;
+    height:400px;
     background:#fff;
     box-shadow: 7px 7px 5px rgba(0,0,0,0.2); 
 }
