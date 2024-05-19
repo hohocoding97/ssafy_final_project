@@ -46,5 +46,9 @@
 </script>
 
 <style scoped>
-
+.navbar-brand {
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: larger;
+}
 </style>

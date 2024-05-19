@@ -5,7 +5,7 @@
     <!-- Section: Social media -->
     <section class="mb-4">
       <img src="/src/assets/minitaco.png" alt="" style="width: 20px; height: 20px;">
-      <a style="">Takofix</a>
+      <a style="font-size: large; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">Takofix</a>
     </section>
     <!-- Section: Social media -->
   </div>
@@ -14,7 +14,7 @@
   <!-- Copyright -->
   <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.05); ">
     © 2024 Copyright:
-    <a class="text-body" href="#">HoJun & NamGyeong</a>
+    <a class="text-body">HoJun & NamGyeong</a>
   </div>
   <!-- Copyright -->
 </footer>
