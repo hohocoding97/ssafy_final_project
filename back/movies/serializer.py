@@ -18,6 +18,7 @@ class ratingSerializer(serializers.ModelSerializer):
 
 # 영화 댓글과 관려된 녀석
 class movieCommentSerializer(serializers.ModelSerializer):
+  username = serializers.CharField(source='user.username', read_only=True)
   class Meta:
     model = MovieComment
     fields ='__all__'
@@ -41,12 +42,11 @@ class DirectorSerializer(serializers.ModelSerializer):
 
 #영화 디테일 페이지에 필요
 class movieDetailSerializer(serializers.ModelSerializer):
-
   actors = ActorSerializer(many=True, read_only=True)
   genres = GenreSerializer(many=True, read_only=True)
   directors = DirectorSerializer(many=True, read_only=True)
 
   class Meta:
     model = Movie
-    # fields = '__all__'
     fields = '__all__'
+

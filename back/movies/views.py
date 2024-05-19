@@ -1,6 +1,4 @@
-from django.http import JsonResponse
 from django.shortcuts import render
-from django.templatetags.i18n import language
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -45,23 +43,25 @@ def movie_comment(request, movie_pk):
         serializer = movieCommentSerializer(movies, many=True) 
         return Response(serializer.data)
 
-#영화 한줄평 삭제!!!
+#영화 한줄평 삭제 또는 수정
 @api_view(['DELETE', 'PUT'])
 @permission_classes([IsAuthenticated])
 def movie_comment_del_edit(request, movie_comment_pk):
     comment = MovieComment.objects.get(pk=movie_comment_pk)
+    if comment.user != request.user:
+        return Response('올바르지 않은 접근입니다.', status=status.HTTP_400_BAD_REQUEST)
+
     if request.method == 'DELETE':
-        if request.user == comment.user:
-            comment.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        comment.delete()
+        return Response('삭제완료',status=status.HTTP_204_NO_CONTENT)
     elif request.method == 'PUT':
-        if request.user == comment.user:
-            serializer = movieCommentSerializer(instance=comment,data=request.data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_200_OK)
-        
-    return Response(status=status.HTTP_400_BAD_REQUEST) #뭔가 문제있으면
+        serializer = movieCommentSerializer(instance=comment,data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+# @api_view(['POST', 'PUT'])
+
 
 ###################db에 영화 정보 가져오고 저장할 함수#######################
 import requests
@@ -109,8 +109,19 @@ def fetch_and_save_popular_movies(request):
     # api_key = settings.TMDB_API_KEY1
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
     for page in range(1,21):
-        url = f'https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=ko-KR&page={page}&region=ko-KR'
-        response = requests.get(url)
+        # url = f'https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=ko-KR&page={page}&region=ko-KR'
+        # response = requests.get(url)
+
+        url = f'https://api.themoviedb.org/3/discover/movie?page={page}'
+        params = {
+            'api_key':'90aeb74b35c6573b54ef820f2e4944f5',
+            'language':'ko-KR',
+            'region': 'KR',
+            'include_adult': False,
+            'with_original_language':'ko'
+        }
+        response=requests.get(url, params=params)
+
         data = response.json()
         popular_movies = data.get('results', [])
         for movie_data in popular_movies:
@@ -127,6 +138,7 @@ def save_actors(request):
     for movie in movies:
         url = f'https://api.themoviedb.org/3/movie/{movie.pk}/credits'
         params = { 'api_key': api_key, 'language': 'ko-KR'}
+
         response = requests.get(url, params=params)
         data = response.json()
         actors = []
