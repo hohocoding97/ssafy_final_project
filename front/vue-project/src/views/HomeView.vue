@@ -4,7 +4,7 @@
     <!-- 랜덤 무비 이미지 -->
     <div class="row justify-content-center mt-5">
       <div class="col-md-6 text-center">
-        <img src="/src/assets/Random.png" alt="" width="200px" height="230px" style="margin-top: 20px;">
+        <img src="/src/assets/Random.png" alt="" width="180px" height="230px" style="margin-top: 20px;">
         <br>
         <!-- v-if 써서 보이게 할 버튼 -->
         <button type="button" class="btn btn-dark">RETRY</button>
@@ -57,6 +57,16 @@
   </div>
 </div>
 
+
+<div id="Title">
+  <h1>최신 개봉작</h1>
+</div>
+<Carousel/>
+
+<div id="Title">
+  <h1>oo님을 위한 추천영화</h1>
+</div>
+<Carousel/>
 </template>
 
 
@@ -65,10 +75,19 @@
   import { movieCounterStore } from '@/stores/movieCounter';
   const movieStore = movieCounterStore()
   const imgURL = movieStore.imgURL
+  import Carousel from '@/components/Carousel.vue';
 </script>
 
 <style scoped>
 
+#Title {
+  font-size: large;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .arrow {
   position: absolute;
