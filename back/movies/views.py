@@ -1,5 +1,6 @@
 from turtle import st
 from django.shortcuts import render
+from django.templatetags.i18n import language
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -8,18 +9,33 @@ from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 from django.contrib.auth import get_user_model
 
+#인기도 순으로 정렬하기
 @api_view(['GET'])
 def movie_list(request):
-    movies = Movie.objects.all().order_by('-popularity') #인기도 순으로 정렬하기
+    movies = Movie.objects.all().order_by('-popularity')[:10] 
     serializer = movieListSerializer(movies, many=True)
     return Response(serializer.data)
 
+# 최근 개봉 영화순으로 정렬해서 10개 보내주기
+@api_view(['GET'])
+def latest_movie_list(request):
+    movies = Movie.objects.all().order_by('-release_date')[:10]
+    serializer = movieListSerializer(movies, many=True)
+    return Response(serializer.data)
 
+@api_view(['GET'])
+def genre_movie_list(request, genre_pk):
+
+    return
+
+
+# 영화 디테일 페이지에서 필요한 데이터들
 @api_view(['GET'])
 def movie_detail(request, pk):
     movie = Movie.objects.get(pk=pk)
     serializer = movieDetailSerializer(movie)
     return Response(serializer.data)
+
 
 @api_view(['POST','PUT'])               # 일단은 머리 아프니까 평점 주기만 하자
 @permission_classes([IsAuthenticated])  # 로그인한 유저만 사용
@@ -126,9 +142,11 @@ def fetch_and_save_popular_movies(request):
     # api_key = settings.TMDB_API_KEY1
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
     for page in range(1,21):
+        # 인기 영화 저장하기!
         # url = f'https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=ko-KR&page={page}&region=ko-KR'
         # response = requests.get(url)
-
+        
+        # 영화 검색
         url = f'https://api.themoviedb.org/3/discover/movie?page={page}'
         params = {
             'api_key':'90aeb74b35c6573b54ef820f2e4944f5',
@@ -138,7 +156,6 @@ def fetch_and_save_popular_movies(request):
             'with_original_language':'ko'
         }
         response=requests.get(url, params=params)
-
         data = response.json()
         popular_movies = data.get('results', [])
         for movie_data in popular_movies:
@@ -147,7 +164,7 @@ def fetch_and_save_popular_movies(request):
                     Movie.objects.get(pk=movie_data['id']) # 이미 저장한 영화면은 저장안할수 있게 try-except구문 활용
                 except:
                     save_movie_data(request, movie_data)
-    
+
 
 def save_actors(request):
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
@@ -184,6 +201,7 @@ def save_actors(request):
         movie.actors.set(actors)
         movie.directors.set(directors)
 
+# 장르 저장하기
 def save_genres(request):
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
     movies = Movie.objects.all()
@@ -202,3 +220,34 @@ def save_genres(request):
                     genres.append(genre_data['id'])
         movie.genres.set(genres)
 
+# 장르별로 영화 저장하기
+def save_genre_movies(request):
+    url = 'https://api.themoviedb.org/3/discover/movie'
+    api_key='90aeb74b35c6573b54ef820f2e4944f5'
+    genres = Genre.objects.all()
+    for genre in genres:
+        params= {
+            'api_key': api_key,
+            'language' : 'ko-KR',
+            'with_genres' : genre.genre_code
+        }
+        response=requests.get(url, params=params)
+        data = response.json()
+        for movie_data in data.get('results', []):
+            if movie_data['overview']: #영화 설명이 있는 경우만 저장하기
+                try:
+                    Movie.objects.get(pk=movie_data['id']) # 이미 저장한 영화면은 저장안할수 있게 try-except구문 활용
+                except:
+                    movie = Movie.objects.create(
+                        code=movie_data['id'],
+                        title=movie_data['title'],
+                        score=movie_data['vote_average'],
+                        overview=movie_data['overview'],
+                        popularity=movie_data['popularity'],
+                        poster_url=movie_data['poster_path'],
+                        release_date=movie_data['release_date'],
+                    )
+                    genre_instance = []
+                    for genre in movie_data['genre_ids']:
+                        genre_instance.append(genre)
+                    movie.genres.set(genres)

@@ -9,5 +9,5 @@ urlpatterns = [
   path('comment/<int:article_pk>/create/',views.create_comment),
   path('comment/<int:comment_pk>/ud/',views.comment_ud),
   path('reply/<int:comment_pk>/', views.reply), #대댓글 작성
-  
+  path('reply_ud/<int:reply_pk>/',views.reply_ud), #대댓글 수정 삭제
 ]

@@ -18,17 +18,21 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
     fields = '__all__'
     read_only_fields = ('user',)
 
-class CommentListSerializer(serializers.ModelSerializer):
-  username = serializers.CharField(source='user.username', read_only=True)
-  class Meta:
-    model = Comment
-    fields = '__all__'
-    read_only_fields = ('user','article')
-
 class ReplySerializer(serializers.ModelSerializer):
   username = serializers.CharField(source='user.username', read_only=True)
   class Meta:
     model = Reply
     fields = '__all__'
     read_only_fields = ('user', 'comment')
+
+
+class CommentListSerializer(serializers.ModelSerializer):
+  username = serializers.CharField(source='user.username', read_only=True)
+  reply_set = ReplySerializer(many=True, read_only=True)
+  class Meta:
+    model = Comment
+    fields = '__all__'
+    read_only_fields = ('user','article')
+
+
   

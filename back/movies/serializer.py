@@ -40,11 +40,19 @@ class DirectorSerializer(serializers.ModelSerializer):
         model = Director
         fields = '__all__'
 
+# 유저가 준 영화 평점
+class UserRatingSerializer(serializers.ModelSerializer):
+   class Meta:
+      model = UserRating
+      fields = ('rating')
+
 #영화 디테일 페이지에 필요
 class movieDetailSerializer(serializers.ModelSerializer):
   actors = ActorSerializer(many=True, read_only=True)
   genres = GenreSerializer(many=True, read_only=True)
   directors = DirectorSerializer(many=True, read_only=True)
+
+  userrating_set = UserRatingSerializer(many=True, read_only=True) #이게과연 필요한가....??
 
   class Meta:
     model = Movie

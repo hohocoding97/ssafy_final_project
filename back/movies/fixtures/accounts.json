@@ -1,0 +1,64 @@
+[
+{
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$HBGHvVaUDdkLA1NXYIkGhV$IfclWhTuN3Fwlh0u6zgY8rusJGUAbKhUT2P6uTc64gw=",
+    "last_login": "2024-05-19T07:44:42.877Z",
+    "is_superuser": false,
+    "username": "namgyeong",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-05-19T07:44:42.342Z",
+    "groups": [],
+    "user_permissions": [],
+    "followings": [],
+    "like_movies": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$sg69cNeaCAhrtIaxtT2ejw$YiixB8N5aM+5BD1wexM4inXu6s2q+ED2lpIO/ek6tc4=",
+    "last_login": "2024-05-19T07:45:15.035Z",
+    "is_superuser": false,
+    "username": "hojun",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-05-19T07:45:01.671Z",
+    "groups": [],
+    "user_permissions": [],
+    "followings": [
+      1
+    ],
+    "like_movies": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$BySdnuTswpTKaPIWBkXhhh$LaDm4nE12iuz5CnNgjk2RXyJFmMwx8RicP5bak98W8M=",
+    "last_login": "2024-05-19T12:21:28.229Z",
+    "is_superuser": false,
+    "username": "user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-05-19T12:21:14.425Z",
+    "groups": [],
+    "user_permissions": [],
+    "followings": [],
+    "like_movies": []
+  }
+}
+]

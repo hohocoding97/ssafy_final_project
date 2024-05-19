@@ -1,3 +1,4 @@
+import stat
 from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication,BasicAuthentication
@@ -5,7 +6,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from back.movies import serializer
 
 from .models import Article, Comment, Reply
 from .serializers import ArticleListSerializer, ArticleDetailSerializer, CommentListSerializer, ReplySerializer
@@ -18,12 +18,13 @@ def ariticle_list(request):
     articles = Article.objects.all()
     serializer = ArticleListSerializer(articles, many=True)
     return Response(serializer.data)
-  
+
   elif request.method == 'POST':
       serializer = ArticleDetailSerializer(data=request.data)
       if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 
 # 게시글 디테일 확인
 @api_view(['GET',])
@@ -93,10 +94,19 @@ def reply(request, comment_pk):
     if serializer.is_valid(raise_exception=True):
       serializer.save(user=request.user, comment=comment)
       return Response(serializer.data,status=status.HTTP_201_CREATED)
-    
+
+# 대댓글 수정 삭제
 @api_view(['PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def reply_ud(request, reply_pk):
   reply = Reply.objects.get(pk=reply_pk)
+  if reply.user != request.user:
+    return Response('잘못된 요청입니다', status=status.HTTP_400_BAD_REQUEST)
   if request.method == 'PUT':
-    serializer = Reply
+    serializer = ReplySerializer(instance=reply, data=request.data, partial= True)
+    if serializer.is_valid(raise_exception=True):
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_200_OK)
+  elif request.method == 'DELETE':
+    reply.delete(reply)
+    return Response(status=status.HTTP_204_NO_CONTENT)
