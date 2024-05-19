@@ -15,7 +15,8 @@ class Director(models.Model):
 class Genre(models.Model):
   genre_code = models.IntegerField(primary_key=True) #장르 코드를 pk로 사용
   genre_name = models.TextField()
-  
+
+
 class Movie(models.Model):
   code = models.IntegerField(primary_key=True) #영화의 코드를 pk로 사용
   title = models.CharField(max_length = 40)

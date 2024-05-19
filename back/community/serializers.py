@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article, Comment
+from .models import Article, Comment, Reply
 from accounts.models import User
 
 
@@ -24,3 +24,11 @@ class CommentListSerializer(serializers.ModelSerializer):
     model = Comment
     fields = '__all__'
     read_only_fields = ('user','article')
+
+class ReplySerializer(serializers.ModelSerializer):
+  username = serializers.CharField(source='user.username', read_only=True)
+  class Meta:
+    model = Reply
+    fields = '__all__'
+    read_only_fields = ('user', 'comment')
+  

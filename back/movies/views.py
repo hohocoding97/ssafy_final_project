@@ -1,3 +1,4 @@
+from turtle import st
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
@@ -5,12 +6,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
+from django.contrib.auth import get_user_model
 
 @api_view(['GET'])
 def movie_list(request):
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().order_by('-popularity') #인기도 순으로 정렬하기
     serializer = movieListSerializer(movies, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def movie_detail(request, pk):
@@ -60,7 +63,21 @@ def movie_comment_del_edit(request, movie_comment_pk):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-# @api_view(['POST', 'PUT'])
+# 영화 좋아요 or 좋아요 취소
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def movie_like(request, movie_pk):
+    movie = Movie.objects.get(pk=movie_pk)
+    me = request.user
+    if movie in me.like_movies.all(): #만약 내가 좋아한 영화에 들어간다면
+        me.like_movies.remove(movie)
+        return Response('좋아요 취소 완료', status=status.HTTP_200_OK)
+    else:
+        me.like_movies.add(movie)
+        return Response('좋아요 완료', status=status.HTTP_200_OK)
+
+
+
 
 
 ###################db에 영화 정보 가져오고 저장할 함수#######################
@@ -147,13 +164,14 @@ def save_actors(request):
             if person_data['known_for_department'] == 'Acting':
                 try:
                     Actor.objects.get(pk=person_data['id'])
-                except:                    
-                    Actor.objects.create(actor_code=person_data['id'], 
-                                        actor_name=person_data['name'],
-                                        profile_path=person_data['profile_path'],
-                                        popularity=person_data['popularity'])
-                    if person_data['id'] not in movie.actors.all():
-                        actors.append(person_data['id'])
+                except:
+                    if person_data['popularity'] >= 4: #어느정도 유명한사람들만 저장하자                 
+                        Actor.objects.create(actor_code=person_data['id'], 
+                                            actor_name=person_data['name'],
+                                            profile_path=person_data['profile_path'],
+                                            popularity=person_data['popularity'])
+                        if person_data['id'] not in movie.actors.all():
+                            actors.append(person_data['id'])
 
             elif person_data['known_for_department'] == 'Directing':
                 try:
@@ -183,3 +201,4 @@ def save_genres(request):
                 if genre_data['id'] not in movie.genres.all():
                     genres.append(genre_data['id'])
         movie.genres.set(genres)
+

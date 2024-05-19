@@ -8,4 +8,6 @@ urlpatterns = [
   path('comment/<int:article_pk>/',views.comment_list),
   path('comment/<int:article_pk>/create/',views.create_comment),
   path('comment/<int:comment_pk>/ud/',views.comment_ud),
+  path('reply/<int:comment_pk>/', views.reply), #대댓글 작성
+  
 ]

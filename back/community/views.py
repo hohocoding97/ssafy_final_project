@@ -5,8 +5,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Article, Comment
-from .serializers import ArticleListSerializer, ArticleDetailSerializer, CommentListSerializer
+from back.movies import serializer
+
+from .models import Article, Comment, Reply
+from .serializers import ArticleListSerializer, ArticleDetailSerializer, CommentListSerializer, ReplySerializer
 
 
 #게시글 생성 또는 게시글리스트 조회
@@ -81,5 +83,20 @@ def comment_ud(request, comment_pk):
     comment.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
   
-
-
+# 대댓글 생성
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def reply(request, comment_pk): 
+  if request.method == 'POST':
+    comment = Comment.objects.get(pk=comment_pk)
+    serializer = ReplySerializer(data= request.data)
+    if serializer.is_valid(raise_exception=True):
+      serializer.save(user=request.user, comment=comment)
+      return Response(serializer.data,status=status.HTTP_201_CREATED)
+    
+@api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def reply_ud(request, reply_pk):
+  reply = Reply.objects.get(pk=reply_pk)
+  if request.method == 'PUT':
+    serializer = Reply
