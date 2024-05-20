@@ -6,6 +6,9 @@ import LoginView from '@/views/LoginView.vue'
 import EditProfileView from '@/views/EditProfileView.vue'
 import GenreMoviesView from '@/views/GenreMoviesView.vue'
 import Test from '@/views/Test.vue'
+import CommunityView from '@/views/CommunityView.vue'
+import WriteView from '@/views/WriteView.vue'
+import BoardView from '@/views/BoardView.vue'
 
 
 const router = createRouter({
@@ -17,7 +20,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/:movieId/',
+      path: '/:movieId',
       name: 'movieDetail',
       component : MovieDetailView,
     },
@@ -46,6 +49,22 @@ const router = createRouter({
       name: 'genre_movies',
       component: GenreMoviesView,
     },
+    {
+      path: '/community',
+      name: 'community',
+      component: CommunityView
+    },
+    {
+      path: '/write',
+      name: 'write',
+      component: WriteView
+    },
+    {
+      path: '/board',
+      name: 'board',
+      component: BoardView
+    }
+
   ]
 })
 
