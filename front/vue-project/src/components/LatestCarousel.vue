@@ -2,11 +2,11 @@
   <!-- 영화 carousel -->
     <div class="w-100">
       <div id="Title">
-        <h1>인기 영화</h1>
+        <h1>최신 영화</h1>
       </div>
       <div id="mainslider" >
         <splide :options="options">
-          <splide-slide v-for="movie in movieStore.movies" :key="movie.id">
+          <splide-slide v-for="movie in movieStore.latestMovies" :key="movie.id">
             <img :src="`${imgURL}${movie.poster_url}`" :alt="movie.title" style="width: 99%;">
           </splide-slide>
         </splide>
@@ -30,7 +30,7 @@
     autoplay: true,
     perMove: 1,
     breakpoints: {
-      1600: {
+      5000: {
         perPage: 6,
       },
       1200: {

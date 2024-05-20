@@ -1,14 +1,20 @@
 <template>
-  <main>
-    <div v-for="movie in movieStore.movies" class="card" style="width: 9rem">
-      <img :src="`${imgURL}${movie.poster_url}`" 
-        :alt="movie.title" 
-        class="card-img-top"
-        @click="moveDetail(movie.code)"
-        type="button"
-        >
+    <div>
+      <h1>다른 영화들</h1>
     </div>
-  </main>
+    <div class="container" style="padding: 0px; margin: auto;">
+        <div v-for="movie in movieStore.allMovies">
+          <img :src="`${imgURL}${movie.poster_url}`" 
+          :alt="movie.title" 
+          style="width: 80px;"
+          class="w-100"
+          @click="moveDetail(movie.code)"
+          type="button"
+          >
+        </div>
+    </div>
+    
+    
 </template>
 
 <script setup>
@@ -23,21 +29,18 @@
     router.push({name:'movieDetail', params:{movieId:movieId}})
   }
   
-  // onMounted(() => {
-  //   if (!movieStore.movies.values) { // 처음 데이터 받을 때만 가져오도록
-  //     console.log('first')
-  //     movieStore.fetch_movies() 
-  //   } else console.log('not first')
-  // })
   onMounted(() => {
-    // if (!movieStore.movies.values) { // 처음 데이터 받을 때만 가져오도록
-    //   console.log('first')
-    //   movieStore.fetch_movies() 
-    // } else console.log('not first')
     movieStore.fetch_movies()
   })
+  
 </script>
 
 <style scoped>
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  gap: 10px;
+}
 
 </style>

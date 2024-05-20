@@ -6,7 +6,7 @@
       </div>
       <div id="mainslider" >
         <splide :options="options">
-          <splide-slide v-for="movie in movieStore.movies" :key="movie.id">
+          <splide-slide v-for="movie in movieStore.popularMovies" :key="movie.id">
             <img :src="`${imgURL}${movie.poster_url}`" :alt="movie.title" style="width: 99%;">
           </splide-slide>
         </splide>
@@ -30,7 +30,7 @@
     autoplay: true,
     perMove: 1,
     breakpoints: {
-      3000: {
+      5000: {
         perPage: 6,
       },
       1200: {

@@ -29,6 +29,12 @@ class Movie(models.Model):
   genres = models.ManyToManyField(Genre)
   directors = models.ManyToManyField(Director)
 
+
+class Trailer(models.Model):
+  movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='trailers')
+  url = models.TextField()
+
+
 class UserRating(models.Model): #우리 웹사이트 이용자가 준 평점
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

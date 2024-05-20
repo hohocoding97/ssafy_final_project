@@ -21,14 +21,14 @@ def movie_list(request):
 # 인기 영화 20개
 @api_view(['GET'])
 def popular_movies(request):
-    movies = Movie.objects.all().order_by('-popularity')[:10] 
+    movies = Movie.objects.all().order_by('-popularity')[:15] 
     serializer = movieListSerializer(movies, many=True)
     return Response(serializer.data)
 
 # 최근 개봉 영화순으로 정렬해서 20개 보내주기
 @api_view(['GET'])
 def latest_movie_list(request):
-    movies = Movie.objects.all().order_by('-release_date')[:10]
+    movies = Movie.objects.all().order_by('-release_date')[:15]
     serializer = movieListSerializer(movies, many=True)
     return Response(serializer.data)
 
@@ -267,3 +267,18 @@ def save_genre_movies(request):
                 for gen in movie_data['genre_ids']:
                     movie.genres.add(gen)
     return Response({'message': '기능 없음'}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def save_trailer(request):
+    movies = Movie.objects.all()
+    for movie in movies:
+        url = f'https://api.themoviedb.org/3/movie/{movie.pk}/videos'
+        api_key='90aeb74b35c6573b54ef820f2e4944f5'
+        params = {'api_key':api_key, 'language' : 'ko-KR'}
+        response = requests.get(url, params=params)
+        urls = []
+        data = response.get('results')
+        for datum in data:
+            if datum.get('site') == 'YouTube':
+                movie.trailers.add(datum)
