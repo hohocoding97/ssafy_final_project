@@ -4,7 +4,7 @@
   <div class="container p-1 pb-0" style="height: 30px;" >
     <!-- Section: Social media -->
     <section class="mb-4">
-      <img src="/src/assets/minitaco.png" alt="" style="width: 20px; height: 20px;">
+      <img src="/src/assets/nav-logo.png" alt="" style="width: 20px; height: 20px;">
       <a style="font-size: large; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">Takofix</a>
     </section>
     <!-- Section: Social media -->
@@ -20,10 +20,10 @@
 </footer>
 </template>
   
-  <script setup>
-  
-  </script>
-  
-  <style scoped>
-  
-  </style>
+<script setup>
+
+</script>
+
+<style scoped>
+
+</style>
