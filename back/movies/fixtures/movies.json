@@ -17737,6 +17737,25 @@
 },
 {
   "model": "movies.movie",
+  "pk": 13,
+  "fields": {
+    "title": "포레스트 검프",
+    "score": 8.475,
+    "overview": "불편한 다리, 남들보다 조금 떨어지는 지능을 가진 포레스트 검프는 헌신적인 어머니의 보살핌과 첫사랑 제니와의 만남으로 편견과 괴롭힘 속에서도 따뜻한 마음을 지니고 성장한다. 또래들의 괴롭힘을 피해 도망치던 포레스트는 누구보다 빠르게 달릴 수 있는 자신의 재능을 깨닫는다. 그의 재능을 알아 본 대학에서 그를 미식축구 선수로 발탁하고, 졸업 후에도 뛰어난 신체능력으로 군에 들어가 무공훈장을 수여받는 등 탄탄한 인생 가도에 오르게 된 포레스트. 하지만 어머니가 병에 걸려 죽음을 맞이하고, 첫사랑 제니 역시 그의 곁을 떠나가며 다시 한 번 인생의 전환점을 맞이하게 되는데...",
+    "popularity": 208.825,
+    "poster_url": "/xdJxoq0dtkchOkUz5UVKuxn7a2V.jpg",
+    "release_date": "1994-06-23",
+    "actors": [],
+    "genres": [
+      18,
+      35,
+      10749
+    ],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
   "pk": 15,
   "fields": {
     "title": "시민 케인",
@@ -19618,6 +19637,24 @@
 },
 {
   "model": "movies.movie",
+  "pk": 11969,
+  "fields": {
+    "title": "툼스톤",
+    "score": 7.604,
+    "overview": "남북 전쟁 뒤의 서부는 새로운 삶을 꿈꾸며 모여드는 사람들로 인해 어수선하고 혼란스럽다. 전설적인 보안관 와이어트는 은퇴 후 흩어져 있던 두 형 버질, 모건과 함께 툼스톤에 정착한다. 그들은 새로운 사업을 하며 돈을 벌고자 하는 데 극심하게 혼란한 툼스톤 거리를 외면하지 못한 형 버질은 보안관직을 맡고 거리에서 총을 들고 다니지 못하게 한다. 이로 인해 그곳에서 이권을 갖고 있던 악당 링고 패거리와의 사이에 긴장감이 감돈다. 치과 의사에서 노름꾼으로 전락한 닥 할리데이는 와이어트와 각별한 사이인데 자신의 지병인 결핵을 치료하고자 툼스톤으로 오게 되고 와이어트 형제와 행동을 함께 한다. 그러던 어느 날 링고 패거리들이 와이어트 형제들을 습격한다는 소문이 돌고 드디어 OK목장에서 역사적인 결투가 벌어지게 되는데...",
+    "popularity": 54.678,
+    "poster_url": "/f6Lb4bpUW2AJW42Hpnix2533RKU.jpg",
+    "release_date": "1993-12-25",
+    "actors": [],
+    "genres": [
+      28,
+      37
+    ],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
   "pk": 12650,
   "fields": {
     "title": "시월애",
@@ -20007,6 +20044,24 @@
     "release_date": "2009-05-14",
     "actors": [],
     "genres": [],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 20556,
+  "fields": {
+    "title": "비틀즈: 렛 잇 비",
+    "score": 7.624,
+    "overview": "50여 년 만에 처음 공개되는 《비틀즈: 렛 잇 비》는 마이클 린지호그 감독이 1970년에 제작한 비틀즈 영화다. 밴드 해체로 혼란스러웠던 1970년 5월에 최초 개봉 후, 이제는 당당히 비틀즈 역사의 한 장을 차지한다. 한때는 부정적인 평가를 받았지만 에미상을 다수 수상한 피터 잭슨의 다큐멘터리 시리즈 《비틀즈: 겟 백》을 통해 진가를 인정받게 된 작품",
+    "popularity": 63.811,
+    "poster_url": "/rYvoOo6h48xhDGIIaiP8XyEeVVQ.jpg",
+    "release_date": "1970-05-13",
+    "actors": [],
+    "genres": [
+      99,
+      10402
+    ],
     "directors": []
   }
 },
@@ -20527,6 +20582,25 @@
     "release_date": "2010-08-04",
     "actors": [],
     "genres": [],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 57283,
+  "fields": {
+    "title": "헥산: 마녀들",
+    "score": 7.603,
+    "overview": "덴마크의 선구적인 영화감독 벤자민 크리스텐슨의 악명 높은 다큐멘터리로 장르를 분명히 규정하기 어려울 정도로 매우 기이한 작품이다. 악마에 대한 옛 사람들의 공포가 정신질환에 대한 오해에서 기인함을 설명하는 탐구로도 이해할 수 있고 동시에 오싹한 공포 영화로도 볼 수 있다. 크리스텐슨은 고대에서부터 중세, 당대에 이르기까지 악령이나 사탄 숭배에 관련한 자료들을 분석하고 재연한다. 그리고 중세에 이르러 이런 망상들이 빚어낸 '마녀 사냥'에 대해 집중적으로 언급하면서 정신병리학적인 접근과 비교한다.",
+    "popularity": 21.86,
+    "poster_url": "/As8MXPHo1zJHyiQV4iWr9uk7tDg.jpg",
+    "release_date": "1922-09-18",
+    "actors": [],
+    "genres": [
+      27,
+      36,
+      99
+    ],
     "directors": []
   }
 },
@@ -24712,6 +24786,23 @@
 },
 {
   "model": "movies.movie",
+  "pk": 439079,
+  "fields": {
+    "title": "더 넌",
+    "score": 5.892,
+    "overview": "루마니아의 젊은 수녀가 자살하는 사건을 의뢰 받아 바티칸에서 파견된 버크 신부와 아이린 수녀가 수녀원을 조사하면서 충격적인 악령의 실체와 만나게 되는 이야기를 그린다.",
+    "popularity": 310.528,
+    "poster_url": "/mN226GIDSMhWBpqPJopGlLk3qXn.jpg",
+    "release_date": "2018-09-05",
+    "actors": [],
+    "genres": [
+      27
+    ],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
   "pk": 440617,
   "fields": {
     "title": "가족의 재구성",
@@ -26580,7 +26671,12 @@
     "poster_url": "/ynyN9hdxL5vq7GnSX8Fdz3TfoTE.jpg",
     "release_date": "2022-07-20",
     "actors": [],
-    "genres": [],
+    "genres": [
+      12,
+      14,
+      28,
+      878
+    ],
     "directors": []
   }
 },
@@ -27755,6 +27851,26 @@
 },
 {
   "model": "movies.movie",
+  "pk": 726684,
+  "fields": {
+    "title": "미라큘러스 월드: 상하이, 레이디 드레곤의 전설",
+    "score": 7.906,
+    "overview": "방학을 맞은 마리네뜨는 아드리앙을 만나기 위해 상하이로 향한다.  그러나 도착한 후 마리네뜨는 레이디버그로 변신할 수 있는 능력을 포함하여 그녀의 모든 것을 잃어버리게 된다!",
+    "popularity": 56.619,
+    "poster_url": "/19Jdd4BTk38rruxoi05JxstFIda.jpg",
+    "release_date": "2021-05-15",
+    "actors": [],
+    "genres": [
+      14,
+      16,
+      28,
+      10770
+    ],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
   "pk": 727340,
   "fields": {
     "title": "헌트",
@@ -28641,7 +28757,11 @@
       2341408,
       4558745
     ],
-    "genres": [],
+    "genres": [
+      27,
+      53,
+      9648
+    ],
     "directors": []
   }
 },
@@ -29575,6 +29695,27 @@
 },
 {
   "model": "movies.movie",
+  "pk": 976573,
+  "fields": {
+    "title": "엘리멘탈",
+    "score": 7.658,
+    "overview": "불, 물, 공기, 흙 4개의 원소들이 살고 있는 엘리멘트 시티. 재치 있고 불처럼 열정 넘치는 앰버는 어느 날 우연히 유쾌하고 감성적이며 물 흐르듯 사는 웨이드를 만나 특별한 우정을 쌓으며, 지금껏 믿어온 모든 것들이 흔들리는 새로운 경험을 하게 되는데...",
+    "popularity": 249.093,
+    "poster_url": "/w7eApyAshbepBnDyYRjSeGyRHi2.jpg",
+    "release_date": "2023-06-14",
+    "actors": [],
+    "genres": [
+      14,
+      16,
+      35,
+      10749,
+      10751
+    ],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
   "pk": 976906,
   "fields": {
     "title": "미션 투 베를린",
@@ -29854,6 +29995,23 @@
 },
 {
   "model": "movies.movie",
+  "pk": 1025169,
+  "fields": {
+    "title": "더 트랩트 13: 태국 동굴 조난 사건",
+    "score": 6.435,
+    "overview": "2018년 탐루앙 동굴에 고립된 태국의 유소년 축구팀 선수들. 이들의 기적적인 생환 스토리를 담은 강렬한 다큐멘터리. 구조된 소년들의 입을 통해 당시의 경험과 뒷이야기들을 들어본다.",
+    "popularity": 54.94,
+    "poster_url": "/seeEc3xNttsx308AB0iFtqKVyjG.jpg",
+    "release_date": "2022-10-05",
+    "actors": [],
+    "genres": [
+      99
+    ],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
   "pk": 1039882,
   "fields": {
     "title": "로기완",
@@ -29993,7 +30151,11 @@
       3053741,
       3879425
     ],
-    "genres": [],
+    "genres": [
+      18,
+      28,
+      53
+    ],
     "directors": []
   }
 },
@@ -30284,6 +30446,24 @@
 },
 {
   "model": "movies.movie",
+  "pk": 1127166,
+  "fields": {
+    "title": "눈물을 만드는 사람",
+    "score": 6.527,
+    "overview": "보육원에서 힘든 어린 시절을 보낸 니카와 리젤은 한 가정에 함께 입양된다. 그런데 언제부턴가 예상치 못한 강렬한 감정이 서로를 끌어당기기 시작한다.",
+    "popularity": 240.931,
+    "poster_url": "/n0fdbO8ryz8LqMv0grS1tPm6pAC.jpg",
+    "release_date": "2024-04-03",
+    "actors": [],
+    "genres": [
+      18,
+      10749
+    ],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
   "pk": 1169340,
   "fields": {
     "title": "씬",
@@ -30298,6 +30478,25 @@
       3999269
     ],
     "genres": [],
+    "directors": []
+  }
+},
+{
+  "model": "movies.movie",
+  "pk": 1211650,
+  "fields": {
+    "title": "파티피플 공명 Road to Summer Sonia",
+    "score": 7.0,
+    "overview": "「삼국지」에 등장하는 천재군사 제갈공명이 현대 시부야로 전생했다. 싱어송라이터 지망생 츠키미 에이코의 노래에 마음을 빼앗긴 공명은 그녀의 꿈을 실현해 줄 군사가 되겠다고 선언. 차례차례 가로막는 장애물을 지략을 짜내 극복해가며 에이코를 스타덤으로 이끌어 간다.",
+    "popularity": 116.824,
+    "poster_url": "/6syoC5OBieIpvfjHWyHN72nudM0.jpg",
+    "release_date": "2024-03-01",
+    "actors": [],
+    "genres": [
+      16,
+      35,
+      10402
+    ],
     "directors": []
   }
 },
