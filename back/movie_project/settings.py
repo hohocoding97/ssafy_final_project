@@ -178,3 +178,5 @@ TMDB_API_KEY1=env('TMDB_API_KEY1')
 AUTH_USER_MODEL='accounts.User'
 #accounts 앱의 User 클래스
 
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'

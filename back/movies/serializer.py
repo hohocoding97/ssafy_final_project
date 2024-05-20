@@ -3,11 +3,6 @@ from rest_framework import serializers
 from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
 from django.contrib.auth import get_user_model
 
-#영화 한번에 쫙 보여 줄때
-class movieListSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Movie
-    fields = ('code', 'title', 'poster_url')
 
 # 영화평점주기 위해
 class ratingSerializer(serializers.ModelSerializer):
@@ -45,6 +40,15 @@ class UserRatingSerializer(serializers.ModelSerializer):
    class Meta:
       model = UserRating
       fields = ('rating')
+
+  
+#영화 한번에 쫙 보여 줄때
+class movieListSerializer(serializers.ModelSerializer):
+  genres = GenreSerializer(many=True, read_only=True)
+  class Meta:
+    model = Movie
+    fields = ('code', 'title', 'poster_url', 'genres')
+
 
 #영화 디테일 페이지에 필요
 class movieDetailSerializer(serializers.ModelSerializer):

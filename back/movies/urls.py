@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.movie_list),
     path('latest/', views.latest_movie_list),
-    path('genre/<int:genre_pk>/', views.genre_movie_list),
+    path('genre/<int:genre_pk>/', views.genre_movie_list),#같은 장르 영화 주룩 보여주기
     path('<int:pk>/', views.movie_detail),
     path('<int:movie_pk>/rating/', views.give_a_rating), #영화 평점주기
     path('<int:movie_pk>/comment/', views.movie_comment), #영화 한줄평쓰기

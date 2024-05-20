@@ -23,10 +23,12 @@ def latest_movie_list(request):
     serializer = movieListSerializer(movies, many=True)
     return Response(serializer.data)
 
+# 특정 장르의 영화 데이터 가져오기
 @api_view(['GET'])
 def genre_movie_list(request, genre_pk):
-
-    return
+    movies = Movie.objects.filter(genres__genre_code=genre_pk).order_by('-popularity')
+    serializer = movieListSerializer(movies, many=True)
+    return Response(serializer.data)
 
 
 # 영화 디테일 페이지에서 필요한 데이터들
