@@ -30,7 +30,7 @@
     autoplay: true,
     perMove: 1,
     breakpoints: {
-      3000: {
+      1600: {
         perPage: 6,
       },
       1200: {

@@ -2,19 +2,11 @@
 <!-- Home 상단 -->
 <HomeHeader/>
 
-<div id="Title">
-  <h1>최신 개봉작</h1>
-</div>
 <PopularCarousel/>
 
-<div id="Title">
-  <h1>oo님을 위한 추천영화</h1>
-</div>
-
 <PopularCarousel/>
-<AllMovies/>
 
-
+<!-- <AllMovies/> -->
 </template>
 
 

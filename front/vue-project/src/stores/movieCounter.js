@@ -15,5 +15,6 @@ export const movieCounterStore = defineStore('movieCounterStore', () => {
     })
     .catch(err => console.log(err))
   }
+
   return { API_URL,imgURL,movies,fetch_movies }
 }, {persist:true})

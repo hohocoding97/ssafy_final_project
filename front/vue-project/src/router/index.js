@@ -4,6 +4,7 @@ import MovieDetailView from '@/views/MovieDetailView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import LoginView from '@/views/LoginView.vue'
 import EditProfileView from '@/views/EditProfileView.vue'
+import GenreMoviesView from '@/views/GenreMoviesView.vue'
 import Test from '@/views/Test.vue'
 
 
@@ -39,7 +40,12 @@ const router = createRouter({
       path: '/test',
       name: 'test',
       component: Test
-    }
+    },
+    {
+      path: '/genre/:genre_code',
+      name: 'genre_movies',
+      component: GenreMoviesView,
+    },
   ]
 })
 

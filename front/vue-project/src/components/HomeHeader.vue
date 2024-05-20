@@ -3,8 +3,8 @@
   <div class="container">
     <!-- 랜덤 무비 이미지 -->
     <div class="row justify-content-center mt-5">
-      <div class="col-md-6 text-center">
-        <img src="/src/assets/Random.png" alt="" width="180px" height="230px" style="margin-top: 20px;">
+      <div class="col-md-6 col-12 text-center">
+        <img src="/src/assets/Random.png" alt="" style="margin-top: 20px; width: 80%;">
         <br>
         <!-- v-if 써서 보이게 할 버튼 -->
         <button type="button" class="btn btn-dark">RETRY</button>
@@ -13,43 +13,42 @@
 
     <!-- 장르 버튼 -->
     <!-- <div class="row justify-content-center mt-5"> -->
-      <div class="col-md-6">
-        <!-- 첫 번째 버튼 행 -->
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <button class="custom-btn btn-2">액션</button>
-          </div>
-          <div class="col-md-4">
-            <button class="custom-btn btn-3"><span>드라마</span></button>
-          </div>
-          <div class="col-md-4">
-            <button class="custom-btn btn-4"><span>다큐멘터리</span></button>
-          </div>
-        </div>
-        
-        <!-- 두 번째 버튼 행 -->
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <button class="custom-btn btn-6"><span>멜로/로맨스</span></button>
-          </div>
-          <div class="col-md-4">
-            <button class="custom-btn btn-8"><span>애니메이션</span></button>
-          </div>
-          <div class="col-md-4">
-            <button class="custom-btn btn-9">스릴러</button>
-          </div>
-        </div>
 
-        <!-- 세 번째 버튼 행 -->
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <button class="custom-btn btn-10">판타지</button>
+      <div class="col-md-6 col my-auto " >
+        <div style="text-align: center;">
+          <h3>장르별 영화 찾기</h3>
+        </div>
+        <!-- 첫 번째 버튼 행 -->
+        <div class="row mb-3" >
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-2" @click="moveGenreMovies(28)">액션</button>
           </div>
-          <div class="col-md-4">
-            <button class="custom-btn btn-13">공포</button>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-3" @click="moveGenreMovies(18)"><span>드라마</span></button>
           </div>
-          <div class="col-md-4">
-            <button class="custom-btn btn-14">기타</button>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-4" @click="moveGenreMovies(99)"><span>다큐멘터리</span></button>
+          </div>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-6" @click="moveGenreMovies(10749)"><span>멜로/로맨스</span></button>
+          </div>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-8" @click="moveGenreMovies(16)"><span>애니메이션</span></button>
+          </div>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-9" @click="moveGenreMovies(53)">스릴러</button>
+          </div>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-10" @click="moveGenreMovies(14)">판타지</button>
+          </div>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-13" @click="moveGenreMovies(27)">공포</button>
+          </div>
+          <div class="col-md-4 col">
+            <button class="custom-btn btn-14" @click="moveGenreMovies(10402)">음악</button>
+          </div>
+          <div class="col-md-4 col" >
+
           </div>
         </div>
       </div>
@@ -59,6 +58,12 @@
 </template>
   
 <script setup>
+  import { useRouter } from 'vue-router';
+  const router = useRouter()
+
+  const moveGenreMovies = function(genre_code) {
+    router.push({name: 'genre_movies', params:{genre_code : genre_code}})
+  }
 
 </script>
 
@@ -120,7 +125,6 @@ button {
   background: rgb(96,9,240);
   background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
   border: none;
-  
 }
 .btn-2:before {
   height: 0%;
