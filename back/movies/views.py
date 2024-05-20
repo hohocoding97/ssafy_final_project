@@ -1,5 +1,5 @@
 from turtle import st
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.templatetags.i18n import language
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
@@ -8,6 +8,8 @@ from rest_framework import status
 from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 from django.contrib.auth import get_user_model
+from pprint import pprint
+
 
 #인기도 순으로 정렬하기
 @api_view(['GET'])
@@ -141,7 +143,7 @@ def save_movie_data(request,movie_data):
     movie.genres.set(genre_instances)
 
 def fetch_and_save_popular_movies(request):
-    # api_key = settings.TMDB_API_KEY1
+
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
     for page in range(1,21):
         # 인기 영화 저장하기!
@@ -223,23 +225,29 @@ def save_genres(request):
         movie.genres.set(genres)
 
 # 장르별로 영화 저장하기
+@api_view(['GET'])
 def save_genre_movies(request):
     url = 'https://api.themoviedb.org/3/discover/movie'
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
     genres = Genre.objects.all()
     for genre in genres:
+        print(genre)
         params= {
             'api_key': api_key,
             'language' : 'ko-KR',
-            'with_genres' : genre.genre_code
+            'with_genres' : genre.pk
         }
         response=requests.get(url, params=params)
         data = response.json()
-        for movie_data in data.get('results', []):
-            if movie_data['overview']: #영화 설명이 있는 경우만 저장하기
+        # pprint(data)
+        for movie_data in data['results']:
+            if movie_data.get('overview'): #영화 설명이 있는 경우만 저장하기
+                print(movie_data['id'])
                 try:
-                    Movie.objects.get(pk=movie_data['id']) # 이미 저장한 영화면은 저장안할수 있게 try-except구문 활용
+                    # print('있음')
+                    movie = get_object_or_404(Movie, pk=movie_data['id'])
                 except:
+                    # print('없음')
                     movie = Movie.objects.create(
                         code=movie_data['id'],
                         title=movie_data['title'],
@@ -249,7 +257,6 @@ def save_genre_movies(request):
                         poster_url=movie_data['poster_path'],
                         release_date=movie_data['release_date'],
                     )
-                    genre_instance = []
-                    for genre in movie_data['genre_ids']:
-                        genre_instance.append(genre)
-                    movie.genres.set(genres)
+                for gen in movie_data['genre_ids']:
+                    movie.genres.add(gen)
+    return Response({'message': '기능 없음'}, status=status.HTTP_200_OK)
