@@ -1,5 +1,6 @@
 <template>
   <Navbar/>
+  <div style="height: 30px;"></div>
 
   <!-- <RouterLink :to="{name:'SignUpView'}">회원가입</RouterLink> -->
   <RouterView />
