@@ -11,14 +11,21 @@ from django.contrib.auth import get_user_model
 from pprint import pprint
 
 
-#인기도 순으로 정렬하기
+# 모든 영화
 @api_view(['GET'])
 def movie_list(request):
+    movies = Movie.objects.all()
+    serializer = movieListSerializer(movies, many=True)
+    return Response(serializer.data)
+
+# 인기 영화 20개
+@api_view(['GET'])
+def popular_movies(request):
     movies = Movie.objects.all().order_by('-popularity')[:10] 
     serializer = movieListSerializer(movies, many=True)
     return Response(serializer.data)
 
-# 최근 개봉 영화순으로 정렬해서 10개 보내주기
+# 최근 개봉 영화순으로 정렬해서 20개 보내주기
 @api_view(['GET'])
 def latest_movie_list(request):
     movies = Movie.objects.all().order_by('-release_date')[:10]

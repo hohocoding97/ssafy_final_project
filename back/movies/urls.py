@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.movie_list),
+    path('popular/', views.popular_movies),
     path('latest/', views.latest_movie_list),
     path('genre/<int:genre_pk>/', views.genre_movie_list),#같은 장르 영화 주룩 보여주기
     path('<int:pk>/', views.movie_detail),
