@@ -30,6 +30,7 @@ export const useCounterStore = defineStore('useCounterStore', () => {
       })
   }
   const token = ref('')
+  const user = ref('')
   const login = function(payload){
     const { username, password } = payload
     axios({
@@ -41,11 +42,12 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         console.log('로그인 성공')
         console.log(res.data)
         token.value = res.data.key
+        user.value = username
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  return { API_URL, signup, token, login }
+  return { API_URL, signup, token, login, user }
 }, {persist: true})

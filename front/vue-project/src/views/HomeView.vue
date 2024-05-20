@@ -61,12 +61,14 @@
 <div id="Title">
   <h1>최신 개봉작</h1>
 </div>
-<Carousel/>
+<PopularCarousel/>
 
 <div id="Title">
   <h1>oo님을 위한 추천영화</h1>
 </div>
-<Carousel/>
+<PopularCarousel/>
+<AllMovies/>
+
 </template>
 
 
@@ -75,7 +77,7 @@
   import { movieCounterStore } from '@/stores/movieCounter';
   const movieStore = movieCounterStore()
   const imgURL = movieStore.imgURL
-  import Carousel from '@/components/Carousel.vue';
+  import PopularCarousel from '@/components/PopularCarousel.vue';
 </script>
 
 <style scoped>
