@@ -11,14 +11,21 @@
   <div class="card-container">
     <div class="card" style="width: 800px; margin-top: 20px;">
       <div class="card-body">
-        <h4 class="card-title" style="margin-left: 10px;">(제목 작성하는 곳)</h4>
-        <div class="owner">
-          <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-left: 10px; margin-top: 5px;">작성자 : (작성자 정보 받아오는 곳)</h6>
-          <button type="button" class="btn btn-dark" style="width: 80px; height: 30px; display: flex; align-items: center; justify-content: center;">Follow</button>
+        <h4 class="card-title" style="margin-left: 10px;">{{article.title}}</h4>
+        <div class="d-flex" style="justify-content: space-between;">
+          <div class="owner">
+            <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-left: 10px; margin-top: 5px;">작성자 : {{article.username}}</h6>
+            <button type="button" class="btn btn-dark" style="width: 80px; height: 30px; display: flex; align-items: center; justify-content: center;">Follow</button>
+          </div>
+          <!-- 삭제와 수정버튼 있는 곳(작성자만 수정 삭제가능하게하기) -->
+          <div v-if="userStore.userInfo.id === article.user" class="d-felx" style="margin-right: 10px;">
+            <button type="button" class="btn btn-secondary"  style="margin-right: 2px;">삭제</button>
+            <button type="button" class="btn btn-secondary" @click="router.push({name:'editArticle', params:{articleId:article.id}})">수정</button>
+          </div>
         </div>
         <div class="card mb-3" style="width: 750px; margin-top: 10px;">
           <div class="card-body">
-            <p class="card-text">(게시글 내용 받아오는 곳)</p>
+            <p class="card-text">{{article.content}}</p>
           </div>
         </div>
         <!-- 댓글 기능 구현 -->
@@ -28,9 +35,9 @@
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
+              <li class="list-group-item" style="inline-block">
+                <textarea class="form-control"  rows="3"></textarea>
+                <button type="button" class="btn btn-dark mt-3" @click="">댓글 작성</button>
               </li>
             </ul>
           </div>
@@ -41,6 +48,28 @@
 </template>
 
 <script setup>
+  import axios from 'axios'
+  import { ref, onMounted } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { articleCounterStore } from '@/stores/articleCounter'
+  import { movieCounterStore } from '@/stores/movieCounter'
+  import { useCounterStore } from '@/stores/userCounter'
+  
+  const userStore = useCounterStore()
+  const movieStore = movieCounterStore()
+  const articleStore = articleCounterStore()  
+  const route = useRoute()
+  const router = useRouter()
+  const article = ref({})
+  onMounted(() => {
+    axios.get(`${movieStore.API_URL}/community/article/${route.params.articleId}`)
+    .then((res) => {
+      console.log(res.data)
+      article.value = res.data
+    })
+    .catch(err => console.log(err))
+  })
+
 </script>
 
 <style scoped>
@@ -68,5 +97,15 @@
 
 .reply-card {
   margin-top: 20px !important; /* 항상 30px의 여백을 위에 추가 */
+}
+
+textarea {
+  width: 100%;
+  height: 60px;
+  padding: 4px 6px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 18px;
 }
 </style>

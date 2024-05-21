@@ -9,6 +9,7 @@ import Test from '@/views/Test.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import WriteView from '@/views/WriteView.vue'
 import articleDetailView from '@/views/articleDetailView.vue'
+import EditArticleView from '@/views/EditArticleView.vue'
 import { useCounterStore } from '@/stores/userCounter'
 
 
@@ -67,15 +68,19 @@ const router = createRouter({
       name: 'write',
       component: WriteView,
       beforeEnter: (to, from) => {
-        // if (!useCounterStore().is_login) return { name : 'home'} //이미 로그인 안했으면 작성페이지 못가게하기
+        if (!useCounterStore().is_login) return { name : 'home'} //이미 로그인 안했으면 작성페이지 못가게하기
       }
     },
     {
-      path: '/articleDetail',
+      path: '/articleDetail/:articleId',
       name: 'articleDetail',
       component: articleDetailView
+    },
+    {
+      path: '/edit/:articleId',
+      name : 'editArticle',
+      component: EditArticleView
     }
-
   ]
 })
 

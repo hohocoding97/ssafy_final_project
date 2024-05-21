@@ -6,8 +6,8 @@
       </div>
       <div id="mainslider" >
         <splide :options="options">
-          <splide-slide v-for="movie in movieStore.popularMovies" :key="movie.id">
-            <img :src="`${imgURL}${movie.poster_url}`" :alt="movie.title" style="width: 99%;">
+          <splide-slide v-for="movie in movieStore.popularMovies" :key="movie.id" @click="router.push({name:'movieDetail', params:{movieId: movie.code}})">
+            <img type="button" :src="`${imgURL}${movie.poster_url}`" :alt="movie.title" style="width: 99%;">
           </splide-slide>
         </splide>
       </div>
@@ -15,14 +15,16 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
-  import { movieCounterStore } from '@/stores/movieCounter';
-  import { Splide, SplideSlide } from '@splidejs/vue-splide';
-  import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { movieCounterStore } from '@/stores/movieCounter'
+  import { Splide, SplideSlide } from '@splidejs/vue-splide'
+  import '@splidejs/splide/dist/css/themes/splide-default.min.css'
   
-  const movieStore = movieCounterStore();
-  const imgURL = movieStore.imgURL;
-  
+  const movieStore = movieCounterStore()
+  const imgURL = movieStore.imgURL
+  const router = useRouter()
+
   // SPLIDE의 옵션 설정
   const options = {
     type: 'loop',

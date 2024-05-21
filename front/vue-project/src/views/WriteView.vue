@@ -32,9 +32,8 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { onMounted } from 'vue'
-  import { articleCounterStore } from '@/stores/articleCounter'
 
+  import { articleCounterStore } from '@/stores/articleCounter'
   const articleStore = articleCounterStore()
   const title = ref('')
   const content = ref('')
@@ -42,10 +41,7 @@
     const payload = {title: title.value, content: content.value}
     articleStore.writeArticle(payload)
   }
-  onMounted(() => {
-    //게시글 데이터 가져오자
-    articleStore.getArticle
-  })
+
 </script>
 
 <style scoped>
