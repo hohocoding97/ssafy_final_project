@@ -24,22 +24,15 @@
 <br>
     <table>
     <tr>
-        <td><button type="button" class="btn btn-dark">글쓰기</button></td>
+        <td><RouterLink :to="{name:'write'}" type="button" class="btn btn-dark" >글쓰기</RouterLink></td>
     </tr>
   </table>
 </template>
 
 <script>
-var i, day = 20;
-for (i = 10; i > 0; i--) {
-    document.write("<tr class='body'>");
-    document.write("<td>" + i +"</td>");
-    document.write("<td class='title'>제목입니다.</td>"); 
-    document.write("<td>작성자</td>"); 
-  document.write("<td>24-01-" + day-- + "</td>");
-    document.write("</tr>");
-}
-</script>
+  import { useRouter, RouterLink } from 'vue-router';
+
+</script> 
 
 <style scoped>
   table {

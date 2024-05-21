@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
+from .models import Movie, UserRating, MovieComment, Actor, Genre, Director, Trailer
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 from django.contrib.auth import get_user_model
 from pprint import pprint
@@ -152,25 +152,25 @@ def save_movie_data(request,movie_data):
 def fetch_and_save_popular_movies(request):
 
     api_key='90aeb74b35c6573b54ef820f2e4944f5'
-    for page in range(1,21):
+    for page in range(1,30):
         # 인기 영화 저장하기!
-        # url = f'https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=ko-KR&page={page}&region=ko-KR'
-        # response = requests.get(url)
+        url = f'https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=ko-KR&page={page}&region=ko-KR'
+        response = requests.get(url)
         
         # 영화 검색
-        url = f'https://api.themoviedb.org/3/discover/movie?page={page}'
-        params = {
-            'api_key':'90aeb74b35c6573b54ef820f2e4944f5',
-            'language':'ko-KR',
-            'region': 'KR',
-            'include_adult': False,
-            'with_original_language':'ko'
-        }
-        response=requests.get(url, params=params)
+        # url = f'https://api.themoviedb.org/3/discover/movie?page={page}'
+        # params = {
+        #     'api_key':'90aeb74b35c6573b54ef820f2e4944f5',
+        #     'language':'ko-KR',
+        #     'region': 'KR',
+        #     'include_adult': False,
+        #     'with_original_language':'ko'
+        # }
+        # response=requests.get(url, params=params)
         data = response.json()
         popular_movies = data.get('results', [])
         for movie_data in popular_movies:
-            if movie_data['overview']: #영화 설명이 있는 경우만 저장하기
+            if movie_data['overview'] and movie_data['vote_count'] > 30: #영화 설명이 있는 경우만 저장하기
                 try:
                     Movie.objects.get(pk=movie_data['id']) # 이미 저장한 영화면은 저장안할수 있게 try-except구문 활용
                 except:
@@ -193,7 +193,7 @@ def save_actors(request):
                 try:
                     Actor.objects.get(pk=person_data['id'])
                 except:
-                    if person_data['popularity'] >= 4: #어느정도 유명한사람들만 저장하자                 
+                    if person_data['popularity'] >= 10: #어느정도 유명한사람들만 저장하자                 
                         Actor.objects.create(actor_code=person_data['id'], 
                                             actor_name=person_data['name'],
                                             profile_path=person_data['profile_path'],
@@ -276,9 +276,18 @@ def save_trailer(request):
         url = f'https://api.themoviedb.org/3/movie/{movie.pk}/videos'
         api_key='90aeb74b35c6573b54ef820f2e4944f5'
         params = {'api_key':api_key, 'language' : 'ko-KR'}
-        response = requests.get(url, params=params)
-        urls = []
-        data = response.get('results')
+
+        data = requests.get(url, params=params).json()['results']
+        not_created = True #한국 영화 없는 경우 True
         for datum in data:
-            if datum.get('site') == 'YouTube':
-                movie.trailers.add(datum)
+            if datum['site'] == 'YouTube':
+                Trailer.objects.create(movie=movie, url=datum['key'])
+                not_created = False
+        if not_created:
+            params = {'api_key':api_key,} # 그냥 미국 버전으로 가져오기
+            response = requests.get(url, params=params).json()
+            data = response['results']
+            for datum in data:
+                if datum['site'] == 'YouTube':
+                    Trailer.objects.create(movie=movie, url=datum['key'])
+    return Response('정상저장완료', status=status.HTTP_201_CREATED)

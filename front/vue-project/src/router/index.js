@@ -8,7 +8,9 @@ import GenreMoviesView from '@/views/GenreMoviesView.vue'
 import Test from '@/views/Test.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import WriteView from '@/views/WriteView.vue'
-import BoardView from '@/views/BoardView.vue'
+import articleDetailView from '@/views/articleDetailView.vue'
+import { useCounterStore } from '@/stores/userCounter'
+
 
 
 const router = createRouter({
@@ -27,12 +29,18 @@ const router = createRouter({
     {
       path: '/signup',
       name: 'SignUpView',
-      component: SignUpView
+      component: SignUpView,
+      beforeEnter: (to, from) => {
+        if (useCounterStore().is_login) return { name : 'home'}//이미 로그인 했으면 회원가입 페이지 가지 말기
+      }
     },
     {
       path: '/login',
       name: 'LoginView',
-      component: LoginView
+      component: LoginView,
+      beforeEnter: (to, from) => {
+        if (useCounterStore().is_login) return { name : 'home'} //이미 로그인 했으면 로그인 페이지 가지 말기
+      }
     },
     {
       path: '/profile/edit',
@@ -57,12 +65,15 @@ const router = createRouter({
     {
       path: '/write',
       name: 'write',
-      component: WriteView
+      component: WriteView,
+      beforeEnter: (to, from) => {
+        // if (!useCounterStore().is_login) return { name : 'home'} //이미 로그인 안했으면 작성페이지 못가게하기
+      }
     },
     {
-      path: '/board',
-      name: 'board',
-      component: BoardView
+      path: '/articleDetail',
+      name: 'articleDetail',
+      component: articleDetailView
     }
 
   ]

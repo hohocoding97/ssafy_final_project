@@ -12,18 +12,18 @@
     <form>
       <table>
         <tr><td class="header">Title</td></tr>
-        <tr><td><input type="text" placeholder="제목을 입력하세요" name="title"></td></tr>
+        <tr><td><input type="text" v-model="title" placeholder="제목을 입력하세요" name="title"></td></tr>
         <tr><td class="header">Content</td></tr>
-        <tr><td><textarea placeholder="내용을 입력하세요" name="detail"></textarea></td></tr>
+        <tr><td><textarea v-model="content" placeholder="내용을 입력하세요" name="detail"></textarea></td></tr>
         <div id="bottom" style="margin-top: 10px;">
-          <div class="input-group">
+          <!-- <div class="input-group">
             <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-          </div>
+          </div> -->
           <!-- 등록, 수정 삭제 -->
-            <input type="submit" value="등록" class="btn btn-dark" onclick="alert('작성 완료!')">
-            <input type="submit" value="수정" class="btn btn-dark" onclick="alert('수정 완료!')">
-            <input type="submit" value="삭제" class="btn btn-dark" onclick="alert('삭제 완료!')">
+            <input @click="writeArticle" type="button" value="등록" class="btn btn-dark">
+            <!-- <input type="submit" value="수정" class="btn btn-dark" onclick="alert('수정 완료!')">
+            <input type="submit" value="삭제" class="btn btn-dark" onclick="alert('삭제 완료!')"> -->
           </div>
       </table>
     </form>
@@ -31,6 +31,21 @@
 </template>
 
 <script setup>
+  import { ref } from 'vue'
+  import { onMounted } from 'vue'
+  import { articleCounterStore } from '@/stores/articleCounter'
+
+  const articleStore = articleCounterStore()
+  const title = ref('')
+  const content = ref('')
+  const writeArticle = function(){
+    const payload = {title: title.value, content: content.value}
+    articleStore.writeArticle(payload)
+  }
+  onMounted(() => {
+    //게시글 데이터 가져오자
+    articleStore.getArticle
+  })
 </script>
 
 <style scoped>

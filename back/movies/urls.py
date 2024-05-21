@@ -16,6 +16,7 @@ urlpatterns = [
     ######### 영화 초기에 저장하는 용도, 나중에 배포를 하게 된다면 닫을 것!! ##################
     path('create-db/', views.fetch_and_save_popular_movies), #일단 영화 db 받는 url 
     path('create-actors-db/', views.save_actors), #영화 db받은 후 배우 정보 저장하는 url
-    path('create-genres-db/', views.save_genres) ,
-    path('create-genre-movies-db/', views.save_genre_movies)
+    path('create-genres-db/', views.save_genres) ,  #받은 영화들의 장르 정보 저장하는 url
+    path('create-genre-movies-db/', views.save_genre_movies),   #현재 장르 정보로 같은 장르의 영화 정보를 저장
+    path('create-trailer-db/', views.save_trailer),          # 현재 영화들의 trailer를 저장      
 ]

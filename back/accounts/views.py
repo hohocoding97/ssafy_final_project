@@ -7,18 +7,30 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated
 
-# 유저 디테일 정보 확인하기 또는 수정하기
-@api_view(['GET', 'PUT'])
-def user_detail(request, user_pk):
-  user = get_user_model().objects.get(pk=user_pk)
-  if request.method == 'GET':
-    serializer = userDetailSerializer(user)
-    return Response(serializer.data)
-  elif request.method == 'PUT':
+# 유저 정보 수정, 탈퇴
+@api_view(['GET','PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def user_detail(request):
+  user = request.user
+  if request.method == 'PUT':
      serializer = userDetailSerializer(instance=user, data=request.data, partial=True)
      if serializer.is_valid(raise_exception=True):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+  elif request.method == 'DELETE':
+     user.delete()
+     return Response(status=status.HTTP_204_NO_CONTENT)
+  elif request.method == 'GET':
+    serializer = userDetailSerializer(user)
+    return Response(serializer.data)
+  
+# 자기 자신 정보 조회
+@api_view(['GET'])
+def other_user_detail(request, user_pk):
+   user = get_user_model().objects.get(pk=user_pk)
+   serializer = userDetailSerializer(user)
+   return Response(serializer.data)
+   
 
 # follow 또는 unfollow
 @api_view(['POST'])
