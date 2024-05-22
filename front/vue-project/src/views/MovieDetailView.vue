@@ -1,6 +1,9 @@
 <template>
-  <DetailMovieHeader/>
-  <Actors/>
+  <div>
+    <DetailMovieHeader/>
+    <Actors/>
+  </div>
+
 </template>
 
 <script setup>
@@ -18,7 +21,6 @@
   onMounted(()=>{
     movieStore.getDetailMovie(route.params.movieId)
   })
-
 </script>
 
 <style scoped>

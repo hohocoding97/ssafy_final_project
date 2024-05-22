@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useCounterStore } from './userCounter'
 import axios from 'axios'
 
 export const movieCounterStore = defineStore('movieCounterStore', () => {
@@ -38,8 +39,21 @@ export const movieCounterStore = defineStore('movieCounterStore', () => {
     .then((res)=>detailMovie.value = res.data)
     .catch((err) => console.log('영화디테일 가져오다가 문제 발생했음'))
   }
-
+  
+  // 영화 좋아요
+  const likeMovie = function(movieId){
+    axios({
+      method:'POST',
+      url: `${API_URL}/movies/${movieId}/like/`,
+      headers: { Authorization: `Token ${useCounterStore().token}`}
+    })
+      .then(res => {
+        console.log(res.data)
+        useCounterStore().getUserInfo() // 유저정보 업데이트하기
+      })
+      .catch(err => console.log(err))
+  }
   return { API_URL,imgURL,allMovies, popularMovies, latestMovies, randomMovies, detailMovie,
-    fetch_movies, getRandomMovies, getDetailMovie,
+    fetch_movies, getRandomMovies, getDetailMovie, likeMovie,
    }
 }, {persist:true})
