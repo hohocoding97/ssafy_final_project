@@ -7,6 +7,7 @@ urlpatterns = [
     path('latest/', views.latest_movie_list),
     path('genre/<int:genre_pk>/', views.genre_movie_list),#같은 장르 영화 주룩 보여주기
     path('<int:pk>/', views.movie_detail),
+    path('random/', views.random_movie_list), #영화 랜덤으로 보여주기
     path('<int:movie_pk>/rating/', views.give_a_rating), #영화 평점주기
     path('<int:movie_pk>/comment/', views.movie_comment), #영화 한줄평쓰기
     path('<int:movie_comment_pk>/comment_ud/', views.movie_comment_del_edit), #영화한줄평 삭제또는 수정

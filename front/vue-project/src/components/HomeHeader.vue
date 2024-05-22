@@ -3,17 +3,22 @@
   <div class="container">
     <!-- 랜덤 무비 이미지 -->
     <div class="row justify-content-center mt-5">
-      <div class="col-md-6 col-12 text-center">
-        <img src="/src/assets/Random.png" alt="" style="margin-top: 20px; width: 80%;">
+      <div class="col-md-6 col-12 text-center" style="background-color: pink;">
+        <h3 style="color: white;" class="mt-3">랜덤 영화</h3>
+        <img v-if="movieStore.randomMovies"
+        @click="router.push({name:'movieDetail', params:{movieId: movieStore.randomMovies[0].code}})"
+        :src="`${imgURL}${movieStore.randomMovies[0].poster_url}`" 
+        type="button"
+        style=" width: 80%;"
+        >
+        <img v-else src="/src/assets/Random.png" alt="" style="margin-top: 20px; width: 80%;">
         <br>
         <!-- v-if 써서 보이게 할 버튼 -->
-        <button type="button" class="btn btn-dark">RETRY</button>
-        <button type="button" class="btn btn-dark">GO DETAIL</button>
+        
+        <button @click="getRandomMovies" type="button" class="btn btn-dark">🎲</button>
       </div>
 
     <!-- 장르 버튼 -->
-    <!-- <div class="row justify-content-center mt-5"> -->
-
       <div class="col-md-6 col my-auto " >
         <div style="text-align: center;">
           <h3>장르별 영화 찾기</h3>
@@ -58,17 +63,27 @@
 </template>
   
 <script setup>
-  import { useRouter } from 'vue-router';
-  const router = useRouter()
+  import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router'
+  import { movieCounterStore } from '@/stores/movieCounter'
 
-  const moveGenreMovies = function(genre_code) {
-    router.push({name: 'genre_movies', params:{genre_code : genre_code}})
+  const router = useRouter()
+  const movieStore = movieCounterStore()
+  const randomMovies = ref([])  // movieStore에 있는 랜덤영화들
+  const imgURL = movieStore.imgURL // tmdb 이미지 url
+
+  const changeMovie = function(idx) { //영화를 바꿔주는 함수
+    movie.value = randomMovies[idx]
+    console.log(movie.value)
   }
+  const moveGenreMovies = function(genre_code) { router.push({name: 'genre_movies', params:{genre_code : genre_code}})}
+  const getRandomMovies = function() { //영화 랜덤으로 가져오기
+    movieStore.getRandomMovies()
+  } 
 
 </script>
 
 <style scoped>
-
 .arrow {
   position: absolute;
   top: 50%;

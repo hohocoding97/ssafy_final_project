@@ -6,10 +6,11 @@ export const movieCounterStore = defineStore('movieCounterStore', () => {
   const API_URL='http://127.0.0.1:8000'
   const imgURL = 'https://image.tmdb.org/t/p/w200'
 
-  const allMovies = ref(null) // 홈에서 사용될 영화 데이터
+  const allMovies = ref(null)     // 홈에서 사용될 영화 데이터
   const popularMovies = ref(null) // 인기 영화 데이터
-  const latestMovies = ref(null) // 최신 영화 데이터
-  
+  const latestMovies = ref(null)  // 최신 영화 데이터
+  const randomMovies = ref(null)  // 랜덤 영화 데이터
+
   const fetch_movies = function(){
     axios.get(`${API_URL}/movies/`)
     .then(res => allMovies.value = res.data)
@@ -22,5 +23,16 @@ export const movieCounterStore = defineStore('movieCounterStore', () => {
     .catch(err => console.log(err))
   }
 
-  return { API_URL,imgURL,allMovies, popularMovies, latestMovies, fetch_movies }
+  const getRandomMovies = function() {
+    axios.get(`${API_URL}/movies/random/`)
+    .then(res => { 
+      console.log(res.data)
+      randomMovies.value = res.data
+    })
+    .catch(err => console.log('랜덤영화가져오는데 문제가 발생함'))
+  }
+
+  return { API_URL,imgURL,allMovies, popularMovies, latestMovies, randomMovies,
+    fetch_movies, getRandomMovies
+   }
 }, {persist:true})

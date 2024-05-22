@@ -9,7 +9,7 @@ from .models import Movie, UserRating, MovieComment, Actor, Genre, Director, Tra
 from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 from django.contrib.auth import get_user_model
 from pprint import pprint
-
+import random #영화 랜덤으로 뽑아올때
 
 # 모든 영화
 @api_view(['GET'])
@@ -31,6 +31,14 @@ def latest_movie_list(request):
     movies = Movie.objects.all().order_by('-release_date')[:15]
     serializer = movieListSerializer(movies, many=True)
     return Response(serializer.data)
+
+# 랜덤 영화 5개 가져오기
+@api_view(['GET'])
+def random_movie_list(request):
+    movies = list(Movie.objects.all())
+    random_movies = random.sample(movies, 5)
+    serializer = movieListSerializer(random_movies, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 # 특정 장르의 영화 데이터 가져오기
 @api_view(['GET'])
