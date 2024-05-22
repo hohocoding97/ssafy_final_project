@@ -37,7 +37,7 @@
   background-position: center; /* 이미지를 가운데로 정렬합니다. */
   z-index: 0;
   /* width: 100px; */
-  height: 650px; /* 화면 전체 높이로 설정합니다.*/
+  height: 670px; /* 화면 전체 높이로 설정합니다.*/
   width: 100vw; /* 전체 너비로 설정합니다. */
   margin-top: 0px;
 }
