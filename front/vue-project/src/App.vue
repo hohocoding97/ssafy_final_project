@@ -1,8 +1,10 @@
 <template>
   <Navbar/>
-  <div style="height: 80px;"></div>
-  <RouterView />
-  <div style="height: 200px;"><!-- 그냥 밑에 Footter에 가리지 말라고 해둠 --></div>
+  <div class="container_app">
+    <!-- <div style="height: 80px;"></div> -->
+    <div style="height: 200px;"><!-- 그냥 밑에 Footter에 가리지 말라고 해둠 --></div>
+    <RouterView />
+  </div>
   <Footer />
 </template>
 
@@ -20,5 +22,10 @@ onMounted(() => movieStore.fetch_movies()) //App 컴포넌트 마운트될때 �
 </script>
 
 <style scoped>
-
+.container_app{
+  display:flex;
+  justify-content: center;
+  height: 200vh;
+  background-color: rgb(240, 234, 210);
+}
 </style>

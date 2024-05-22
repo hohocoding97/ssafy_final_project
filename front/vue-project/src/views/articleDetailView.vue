@@ -1,11 +1,12 @@
 <template>
-  <!-- 이미지부터 커뮤니티 검색 화면까지 -->
-  <div class="upper" style="text-align: center; margin-top: 20px;">
-    <img src="/src/assets/taco.png" alt="" width="180px" height="150px" style="margin-top: 50px;">
-    <div class="enter-ment">
-      <h1>Takofix Community</h1>
+  <div class="container">
+    <!-- 이미지부터 커뮤니티 검색 화면까지 -->
+    <div class="upper" style="text-align: center; margin-top: 20px;">
+      <img src="/src/assets/그림1.png" alt="" width="180px" height="150px" style="margin-top: 50px;">
+      <div class="enter-ment">
+        <h1>Takofix Community</h1>
+      </div>
     </div>
-  </div>
 
   <!-- 게시글 확인 -->
   <div class="card-container">
@@ -23,13 +24,13 @@
             <button type="button" class="btn btn-secondary" @click="router.push({name:'editArticle', params:{articleId:article.id}})">수정</button>
           </div>
         </div>
-        <div class="card mb-3" style="width: 750px; margin-top: 10px;">
+        <div class="card mb-3" style="width: 100%; margin-top: 10px;">
           <div class="card-body">
             <p class="card-text">{{article.content}}</p>
           </div>
         </div>
         <!-- 댓글 기능 구현 -->
-        <div class="card reply-card" style="width: 750px;">
+        <div class="card reply-card" style="width: 100%;">
           <div class="card-header bg-light">
             <i class="fa fa-comment fa"></i> 댓글
           </div>
@@ -44,6 +45,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
