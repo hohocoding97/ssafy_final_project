@@ -16,7 +16,8 @@
         <br> 
         <!-- v-if 써서 보이게 할 버튼 -->
         
-        <button @click="getRandomMovies" type="button" class="btn btn-dark">🎲</button>
+        <redbutton @click="getRandomMovies"/>
+        <!-- <button @click="getRandomMovies" type="button" class="btn btn-dark">🎲</button> -->
       </div>
 
     <!-- 장르 버튼 -->
@@ -67,7 +68,7 @@
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router'
   import { movieCounterStore } from '@/stores/movieCounter'
-
+  import redbutton from './redbutton.vue';
   const router = useRouter()
   const movieStore = movieCounterStore()
   const randomMovies = ref([])  // movieStore에 있는 랜덤영화들
