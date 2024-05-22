@@ -1,14 +1,12 @@
 <template>
-  <div class="container_test">
+  <div class="container_test" style="background-color: rgb(240, 234, 210);">
     <p v-if="userStore.is_login">{{ userStore.userInfo.username }}님 안녕하세요</p>
-    
-    
       <div class="background"/>
       <HomeHeader class="homeheader_inform"/>
       <div style="margin-top: 20px;"></div>
       <PopularCarousel/>
       <LatestCarousel/>
-      <!-- <AllMovies/> -->
+      <AllMovies/>
   </div>
 </template>
 

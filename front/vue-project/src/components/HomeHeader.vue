@@ -1,5 +1,6 @@
 <template>
-  <div class="">
+  
+<div class="">
   <div class="container">
     <!-- 랜덤 무비 이미지 -->
     <div class="row justify-content-center mt-5">

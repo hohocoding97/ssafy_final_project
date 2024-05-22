@@ -10,6 +10,8 @@ import CommunityView from '@/views/CommunityView.vue'
 import WriteView from '@/views/WriteView.vue'
 import articleDetailView from '@/views/articleDetailView.vue'
 import EditArticleView from '@/views/EditArticleView.vue'
+import ProfileView from '@/views/ProfileView.vue'
+
 import { useCounterStore } from '@/stores/userCounter'
 
 
@@ -77,10 +79,16 @@ const router = createRouter({
       component: articleDetailView
     },
     {
+      path:'/profile/:userId',
+      name: 'profile',
+      component: ProfileView
+    },
+    {
       path: '/edit/:articleId',
       name : 'editArticle',
       component: EditArticleView
-    }
+    },
+    
   ]
 })
 

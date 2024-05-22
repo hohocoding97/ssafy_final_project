@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="navbar-nav p-3">
           <RouterLink style="margin-right: 10px; margin-top: 5px; text-decoration: none; color: black;">TakoTalk</RouterLink>
           <RouterLink :to="{name:'community'}" style="margin-right: 10px; margin-top: 5px; text-decoration: none; color: black;">Community</RouterLink>
           <RouterLink style="margin-right: 10px; margin-top: 5px; text-decoration: none; color: black;">AI Movie Recommend</RouterLink>
@@ -20,9 +20,11 @@
             <button class="btn btn-dark" type="submit" style="margin-right: 10px;">Search</button>
           </form>
           <p></p>
-          <a v-if="userStore.is_login === true" @click="userStore.logout()" class="btn btn-dark" type="button" style="margin-right: 10px;">로그아웃</a>
-          <RouterLink v-if="userStore.is_login === false" :to="{name:'SignUpView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">Signup</RouterLink>
-          <RouterLink v-if="userStore.is_login === false" :to="{name:'LoginView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">Login</RouterLink>
+          <a v-if="userStore.is_login === true" @click="userStore.logout()" class="btn btn-dark" type="button" style="margin-right: 10px;">logout</a>
+          <RouterLink v-if="userStore.is_login === true" :to="{name:'profile' ,params : { userId : userStore.userInfo.id}}"
+          class="btn btn-dark" type="button" style="margin-right: 10px;">My</RouterLink>
+          <RouterLink v-if="userStore.is_login === false" :to="{name:'SignUpView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">signup</RouterLink>
+          <RouterLink v-if="userStore.is_login === false" :to="{name:'LoginView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">login</RouterLink>
         </div>
       </div>
     </div>

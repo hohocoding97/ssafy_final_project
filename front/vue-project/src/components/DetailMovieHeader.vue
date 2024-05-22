@@ -35,17 +35,21 @@
                 a 15.9155 15.9155 0 0 1 0 -31.831"
             />
             <path class="circle"
-              stroke-dasharray="60, 100"
+              :stroke-dasharray="`${movieStore.detailMovie.average_rating}, 100`"
               d="M18 2.0845
                 a 15.9155 15.9155 0 0 1 0 31.831
                 a 15.9155 15.9155 0 0 1 0 -31.831"
             />
-            <text x="18" y="20.35" class="percentage">60%</text>
+            <text x="18" y="20.35" class="percentage">{{movieStore.detailMovie.average_rating}}%</text>
+            
           </svg>
           
         </div>
         <!-- 좋아요 표시 -->
-        <p style="font-size: 40px;">&#x2764;</p>
+        <p v-if="is_like" 
+        @click="likeMovie" type="button" style="font-size: 40px;">❤️</p>
+        <p v-else 
+        @click="likeMovie" type="button" style="font-size: 40px;">🤍</p>
 
       </div>
     </div>
@@ -54,9 +58,19 @@
 
 <script setup>
   import { movieCounterStore } from '@/stores/movieCounter'
+  import { useCounterStore } from '@/stores/userCounter'
+  import { computed } from 'vue'
 
   const movieStore = movieCounterStore()
+  const userStore = useCounterStore()
   const imgURL = movieStore.imgURL
+
+  const likeMovie = function(){movieStore.likeMovie(movieStore.detailMovie.code)}
+  const is_like = computed(() => {
+    return  userStore.userInfo.like_movies.includes(movieStore.detailMovie.code) //좋아요한 무비면 true
+  })
+
+
 </script>
 
 <style scoped>
