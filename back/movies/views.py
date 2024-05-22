@@ -106,14 +106,10 @@ def movie_like(request, movie_pk):
     me = request.user
     if movie in me.like_movies.all(): #만약 내가 좋아한 영화에 들어간다면
         me.like_movies.remove(movie)
-        return Response('좋아요 취소 완료', status=status.HTTP_200_OK)
+        return Response({'is_like' : False}, status=status.HTTP_200_OK)
     else:
         me.like_movies.add(movie)
-        return Response('좋아요 완료', status=status.HTTP_200_OK)
-
-
-
-
+        return Response({'is_like' : True}, status=status.HTTP_200_OK)
 
 ###################db에 영화 정보 가져오고 저장할 함수#######################
 import requests

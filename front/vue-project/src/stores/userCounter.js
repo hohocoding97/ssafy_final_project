@@ -8,6 +8,8 @@ export const useCounterStore = defineStore('useCounterStore', () => {
   const router = useRouter()
   const is_login = ref(false)
   const token = ref(null)
+  const like_movies = ref(null)
+
   const userInfo = ref({
     username: '',
     id: '',
@@ -16,6 +18,7 @@ export const useCounterStore = defineStore('useCounterStore', () => {
     nick_name : '',
     like_movies : [],
   })
+
   const profileInfo = ref({
     username: '',
     id: '',
@@ -88,6 +91,8 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         console.log('내 정보 가져오기 성공')
       })
       .catch(err => console.log('내 정보 가져오기 실패', err))
+
+    
   }
   
   const getProfileInfo = function(userId) {
@@ -106,6 +111,10 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         console.log('프로필 정보 가져오기 성공')
       })
       .catch(err => console.log('프로필 정보 가져오기 실패', err))
+
+      axios.get(`${API_URL}/users/${userId}/like_movies/`)
+      .then((res) => like_movies.value = res.data)
+      .catch((err) => console.log(err))
   }
 
 
@@ -128,6 +137,19 @@ export const useCounterStore = defineStore('useCounterStore', () => {
     .catch(err => console.log('로그아웃실패',err))
   }
 
-  return { API_URL, token,  userInfo, is_login, profileInfo,
-    signup, login, logout, getUserInfo ,getProfileInfo}
+  const follow = function() {
+    if (!is_login){ window.alert('로그인이 필요합니다') }
+    else if (userInfo.value.id === profileInfo.value.id) { window.alert('잘못된 접근입니다') }
+    else { 
+      axios({
+        method : 'POST',
+        url: `${API_URL}/users/${profileInfo.value.id}/follow/`,
+        headers : { Authorization : `Token ${token.value}` }
+      })
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err))
+    }
+  }
+  return { API_URL, token,  userInfo, is_login, profileInfo, like_movies,
+    signup, login, logout, getUserInfo ,getProfileInfo, follow, }
 }, {persist: true})

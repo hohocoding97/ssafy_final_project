@@ -15,7 +15,6 @@ class ratingSerializer(serializers.ModelSerializer):
 class movieCommentSerializer(serializers.ModelSerializer):
   username = serializers.CharField(source='user.username', read_only=True)
 
-  
   class Meta:
     model = MovieComment
     fields ='__all__'

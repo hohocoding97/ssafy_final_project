@@ -10,7 +10,6 @@
   import { onMounted, ref } from 'vue'
   import { useRoute } from 'vue-router'
   import { movieCounterStore } from '@/stores/movieCounter'
-  import axios from 'axios'
   import Actors from '@/components/Actors.vue'
   import DetailMovieHeader from '@/components/DetailMovieHeader.vue'
 
@@ -19,6 +18,7 @@
   const imgURL = movieStore.imgURL
 
   onMounted(()=>{
+    console.log('무비 디테일 마운트함 ')
     movieStore.getDetailMovie(route.params.movieId)
   })
 </script>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
-from .serializers import userDetailSerializer
+from .serializers import userDetailSerializer, userLikeMoviesSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated
 
 # 유저 정보 수정, 탈퇴
-@api_view(['GET','PUT', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def user_detail(request):
   user = request.user
@@ -24,7 +24,9 @@ def user_detail(request):
     serializer = userDetailSerializer(user)
     return Response(serializer.data)
   
-# 자기 자신 정보 조회
+
+  
+# 딴 사람 정보 조회
 @api_view(['GET'])
 def other_user_detail(request, user_pk):
    user = get_user_model().objects.get(pk=user_pk)
@@ -40,7 +42,14 @@ def follow(request, user_pk):
     you = get_user_model().objects.get(pk=user_pk)
     if you in me.followings.all():  #만약 이미 팔로우 했다면
         me.followings.remove(you)   #팔로우 취소
-        return Response(f'{me.username}이 {you.username}을 팔로우 취소함', status=status.HTTP_200_OK)
+        return Response({"is_follow" : False}, status=status.HTTP_200_OK)
     else:
         me.followings.add(you)  #팔로우하기
-        return Response(f'{me.username}이 {you.username}을 팔로우함', status=status.HTTP_200_OK)
+        return Response({"is_follow" : True}, status=status.HTTP_200_OK)
+    
+
+@api_view(['GET'])
+def like_movies(request, user_pk):
+   user = get_user_model().objects.get(pk=user_pk)
+   serializer = userLikeMoviesSerializer(user)
+   return Response(serializer.data)

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row">
+
     <div class="poster col4">
       <img  v-bind:src="`${imgURL}${movieStore.detailMovie.poster_url}`" alt="movie_poster">
     </div>
@@ -55,7 +55,7 @@
       </div>
     </div>
   </div>
-  </div>  
+
   <hr class="mx-auto" width="96%">
 </template>
 
@@ -69,15 +69,13 @@
   const imgURL = movieStore.imgURL
 
   const likeMovie = function(){
-    if (userStore.isLogin){
+    if (userStore.is_login) {
       movieStore.likeMovie(movieStore.detailMovie.code)
     } else {
       window.alert('로그인이 필요합니다!')
     }
   }
-  const is_like = computed(() => {
-    return  userStore.userInfo.like_movies.includes(movieStore.detailMovie.code) //좋아요한 무비면 true
-  })
+  const is_like = computed(() => userStore.userInfo.like_movies.includes(movieStore.detailMovie.code)) //좋아요한 무비면 true
 
 
 </script>
@@ -93,8 +91,8 @@
 .poster {
   margin-top: 30px;
   margin-right: 20px; 
-  width: 100%;
-  /* height: 300px; */
+  width: 200px;
+  height: 300px;
 }
 
 .detail {

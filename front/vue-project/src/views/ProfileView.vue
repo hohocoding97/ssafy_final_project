@@ -1,7 +1,10 @@
 <template>
 
   <h2 style="text-align: center;">{{ userStore.profileInfo.username }}님의 페이지</h2>
-  
+  <div v-if="userStore.userInfo.id !== userStore.profileInfo.id">
+    <button @click="follow">follow</button>
+    <button @click="follow">unfollow</button>
+  </div>
 
   <div class="w-100" >
       <div id="Title">
@@ -35,13 +38,13 @@
   const userStore = useCounterStore()
   const movieStore = movieCounterStore()
   const imgURL = movieStore.imgURL
-
+  
   onMounted(() => {
     userStore.getProfileInfo(route.params.userId)
   })
-  const profileImgURL = computed(() => {
-    return `${userStore.API_URL}${userStore.profileInfo.image_url}`
-  })
+  const profileImgURL = computed(() => `${userStore.API_URL}${userStore.profileInfo.image_url}`)
+  
+  const follow = function(){ userStore.follow() }
 
   // SPLIDE의 옵션 설정
   const options = {
