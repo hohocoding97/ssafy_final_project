@@ -2,7 +2,7 @@
   <div class="container">
     <!-- 이미지부터 커뮤니티 검색 화면까지 -->
     <div class="upper" style="text-align: center; margin-top: 20px;">
-      <img src="/src/assets/그림1.png" alt="" width = "180px" height = "150px" style="margin-top: 50px;">
+      <Cat class="mx-auto my-5"/>
         <div class = enter-ment>
           <h1>Takofix Community</h1>
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
@@ -50,6 +50,8 @@
 import { useRouter, RouterLink } from 'vue-router';
 import { onMounted } from 'vue'
 import { articleCounterStore } from '@/stores/articleCounter'
+import Cat from '@/components/Cat.vue'
+
 const articleStore = articleCounterStore()
 const router = useRouter()
 onMounted(() => {

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-  <!-- 이미지부터 환영 코멘트까지 -->
-  <div class="upper" style="text-align: center;">
-    <img src="/src/assets/그림1.png" alt="" width = "180px" height = "150px" style="margin-top: 50px;">
-    <div class = enter-ment>
-      <p>타코야끼를 좋아하는 영화인! 환영해요~!</p>
-      <p>즐겁게 영화보며 이야기 해보아요~!</p>
+    <!-- 이미지부터 환영 코멘트까지 -->
+    <div class="upper" style="text-align: center;">
+      <div class = enter-ment>
+        <Hamster style="margin-left: 50px; margin-top: 30px; margin-bottom: 30px;"/>
+        <p>타코야끼를 좋아하는 영화인! 환영해요~!</p>
+        <p>즐겁게 영화보며 이야기 해보아요~!</p>
     </div>    
   </div>
   <!-- 회원가입 폼 -->
@@ -45,7 +45,7 @@
 <script setup>
   import { ref } from 'vue';
   import { useCounterStore } from '@/stores/userCounter'
-
+  import Hamster from '@/components/Hamster.vue';
   const store = useCounterStore()
   const username = ref(null)
   const password1 = ref(null)

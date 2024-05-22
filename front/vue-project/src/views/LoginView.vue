@@ -1,8 +1,9 @@
 <template>
+  <Starwars/>
   <div class="container">
-      <!-- 이미지부터 환영 코멘트까지 -->
+    <!-- 이미지부터 환영 코멘트까지 -->
     <div class="upper" style="text-align: center;">
-      <img src="/src/assets/그림1.png" alt="" width = "180px" height = "150px" style="margin-top: 50px;">
+      <Pobi class="mx-auto my-4"/>
       <div class = enter-ment>
         <p>타코야끼를 좋아하는 영화인! 환영해요~!</p>
         <p>즐겁게 영화보며 이야기 해보아요~!</p>
@@ -38,7 +39,7 @@
     import { RouterLink } from 'vue-router';
     import axios from 'axios';
     import { useCounterStore } from '@/stores/userCounter';
-    
+    import Pobi from '@/components/Pobi.vue';
     const store = useCounterStore()
     const username = ref('')
     const password = ref('')
