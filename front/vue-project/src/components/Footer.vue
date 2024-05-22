@@ -5,7 +5,7 @@
     <!-- Section: Social media -->
     <section class="mb-4">
       <img src="/src/assets/nav-logo.png" alt="" style="width: 20px; height: 20px;">
-      <a style="font-size: large; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold">Takofix</a>
+      <a style="font-size: large; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold;" >Takofix</a>
     </section>
     <!-- Section: Social media -->
   </div>

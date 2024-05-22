@@ -1,7 +1,8 @@
 <template>
+  <div class="container">
   <!-- 이미지부터 커뮤니티 검색 화면까지 -->
   <div class="upper" style="text-align: center; margin-top: 20px;">
-    <img src="/src/assets/taco.png" alt="" width="180px" height="150px" style="margin-top: 50px;">
+    <img src="/src/assets/그림1.png" alt="" width="180px" height="150px" style="margin-top: 50px;">
     <div class="enter-ment">
       <h1>Takofix Community</h1>
     </div>
@@ -24,6 +25,7 @@
  
       </div>
     </div>
+  </div>
   </div>
 </template>
 
