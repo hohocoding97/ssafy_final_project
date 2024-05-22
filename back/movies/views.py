@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import Movie, UserRating, MovieComment, Actor, Genre, Director, Trailer
-from .serializer import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
+from .serializers import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
 from django.contrib.auth import get_user_model
 from pprint import pprint
 import random #영화 랜덤으로 뽑아올때

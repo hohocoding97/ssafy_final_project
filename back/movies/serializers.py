@@ -1,6 +1,6 @@
 from dataclasses import fields
 from rest_framework import serializers
-from .models import Movie, UserRating, MovieComment, Actor, Genre, Director
+from .models import Movie, UserRating, MovieComment, Actor, Genre, Director, Trailer
 from django.contrib.auth import get_user_model
 from django.db.models import Avg
 
@@ -21,7 +21,6 @@ class movieCommentSerializer(serializers.ModelSerializer):
     fields ='__all__'
     read_only_fields = ('user', 'movie')
   
-
 
 # 배우 정보
 class ActorSerializer(serializers.ModelSerializer):
@@ -46,13 +45,19 @@ class UserRatingSerializer(serializers.ModelSerializer):
       model = UserRating
       fields = ('rating')
 
+# 트레일러
+class trailerSerializer(serializers.ModelSerializer):
+  class Meta:
+     model = Trailer
+     fields = '__all__'
   
 #영화 한번에 쫙 보여 줄때
 class movieListSerializer(serializers.ModelSerializer):
   genres = GenreSerializer(many=True, read_only=True)
+  trailers = trailerSerializer(many=True, read_only=True)
   class Meta:
     model = Movie
-    fields = ('code', 'title', 'poster_url', 'genres')
+    fields = ('code', 'title', 'poster_url', 'genres', 'trailers' )
 
 
 #영화 디테일 페이지에 필요
@@ -60,7 +65,7 @@ class movieDetailSerializer(serializers.ModelSerializer):
   actors = ActorSerializer(many=True, read_only=True)
   genres = GenreSerializer(many=True, read_only=True)
   directors = DirectorSerializer(many=True, read_only=True)
-
+  trailers = trailerSerializer(many=True, read_only=True)
   userrating_set = UserRatingSerializer(many=True, read_only=True) #이게과연 필요한가....??
   average_rating = serializers.SerializerMethodField()
   class Meta:

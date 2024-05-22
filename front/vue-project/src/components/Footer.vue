@@ -1,5 +1,5 @@
 <template>
-<footer class="fixed-bottom bg-body-tertiary text-center">
+<footer class="bg-body-tertiary text-center">
   <!-- Grid container -->
   <div class="container p-1 pb-0" style="height: 30px;" >
     <!-- Section: Social media -->
