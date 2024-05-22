@@ -12,7 +12,7 @@
         style=" width: 80%;"
         >
         <img v-else src="/src/assets/Random.png" alt="" style="margin-top: 20px; width: 80%;">
-        <br>
+        <br> 
         <!-- v-if 써서 보이게 할 버튼 -->
         
         <button @click="getRandomMovies" type="button" class="btn btn-dark">🎲</button>

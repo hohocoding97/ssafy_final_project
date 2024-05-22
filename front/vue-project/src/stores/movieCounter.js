@@ -10,6 +10,7 @@ export const movieCounterStore = defineStore('movieCounterStore', () => {
   const popularMovies = ref(null) // 인기 영화 데이터
   const latestMovies = ref(null)  // 최신 영화 데이터
   const randomMovies = ref(null)  // 랜덤 영화 데이터
+  const detailMovie = ref(null)         // 디테일 페이지 영화 데이터
 
   const fetch_movies = function(){
     axios.get(`${API_URL}/movies/`)
@@ -32,7 +33,13 @@ export const movieCounterStore = defineStore('movieCounterStore', () => {
     .catch(err => console.log('랜덤영화가져오는데 문제가 발생함'))
   }
 
-  return { API_URL,imgURL,allMovies, popularMovies, latestMovies, randomMovies,
-    fetch_movies, getRandomMovies
+  const getDetailMovie = function(movieId) {
+    axios.get(`${API_URL}/movies/${movieId}/`)
+    .then((res)=>detailMovie.value = res.data)
+    .catch((err) => console.log('영화디테일 가져오다가 문제 발생했음'))
+  }
+
+  return { API_URL,imgURL,allMovies, popularMovies, latestMovies, randomMovies, detailMovie,
+    fetch_movies, getRandomMovies, getDetailMovie,
    }
 }, {persist:true})
