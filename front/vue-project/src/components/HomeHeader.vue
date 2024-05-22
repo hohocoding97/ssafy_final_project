@@ -10,13 +10,17 @@
         @click="router.push({name:'movieDetail', params:{movieId: movieStore.randomMovies[0].code}})"
         :src="`${imgURL}${movieStore.randomMovies[0].poster_url}`" 
         type="button"
-        style=" width: 400px; height: 500px;"
+        style=" width: 300px; height: 500px;"
         >
         <img v-else src="/src/assets/Random.png" alt="" style="margin-top: 20px; width: 80%;">
         <br> 
         <!-- v-if 써서 보이게 할 버튼 -->
-        
-        <redbutton @click="getRandomMovies"/>
+        <div>
+          
+          <h5 style="color: whitesmoke; margin-top: 5px;"><strong>랜덤! &#8595;</strong></h5>
+          
+          <redbutton @click="getRandomMovies"/>
+        </div>
         <!-- <button @click="getRandomMovies" type="button" class="btn btn-dark">🎲</button> -->
       </div>
 
@@ -65,12 +69,15 @@
 </template>
   
 <script setup>
-  import { computed, ref } from 'vue';
+  import { computed, ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { movieCounterStore } from '@/stores/movieCounter'
-  import redbutton from './redbutton.vue';
+  import { useCounterStore } from '@/stores/userCounter'
+  import redbutton from './redbutton.vue'
+
   const router = useRouter()
   const movieStore = movieCounterStore()
+  const userStore = useCounterStore()
   const randomMovies = ref([])  // movieStore에 있는 랜덤영화들
   const imgURL = movieStore.imgURL // tmdb 이미지 url
 
@@ -78,6 +85,7 @@
     movie.value = randomMovies[idx]
     console.log(movie.value)
   }
+
   const moveGenreMovies = function(genre_code) { router.push({name: 'genre_movies', params:{genre_code : genre_code}})}
   const getRandomMovies = function() { //영화 랜덤으로 가져오기
     movieStore.getRandomMovies()
