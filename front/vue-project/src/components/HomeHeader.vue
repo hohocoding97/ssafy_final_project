@@ -4,13 +4,13 @@
   <div class="container">
     <!-- 랜덤 무비 이미지 -->
     <div class="row justify-content-center mt-5">
-      <div class="col-md-6 col-12 text-center" style="background-color: pink;">
-        <h3 style="color: white;" class="mt-3">랜덤 영화</h3>
+      <div class="col-md-6 col-12 text-center">
+        <!-- <h3 style="color: white;" class="mt-3">랜덤 영화</h3> -->
         <img v-if="movieStore.randomMovies"
         @click="router.push({name:'movieDetail', params:{movieId: movieStore.randomMovies[0].code}})"
         :src="`${imgURL}${movieStore.randomMovies[0].poster_url}`" 
         type="button"
-        style=" width: 80%;"
+        style=" width: 400px; height: 500px;"
         >
         <img v-else src="/src/assets/Random.png" alt="" style="margin-top: 20px; width: 80%;">
         <br> 

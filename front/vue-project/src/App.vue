@@ -22,9 +22,11 @@ onMounted(() => movieStore.fetch_movies()) //App 컴포넌트 마운트될때 �
 
 <style scoped>
 .container_app{
+
   /* display:flex; */
   /* justify-content: center; */
   height: 150%;
+
   background-color: rgb(240, 234, 210);
 }
 </style>

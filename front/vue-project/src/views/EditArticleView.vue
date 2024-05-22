@@ -2,9 +2,9 @@
   <div class="container">
   <!-- 이미지부터 커뮤니티 검색 화면까지 -->
   <div class="upper" style="text-align: center; margin-top: 20px;">
-    <img src="/src/assets/그림1.png" alt="" width="180px" height="150px" style="margin-top: 50px;">
+    <Yum class="my-3"/>
     <div class="enter-ment">
-      <h1>Takofix Community</h1>
+    <h1>Takofix Community</h1>
     </div>
   </div>
 
@@ -36,7 +36,9 @@
   import { articleCounterStore } from '@/stores/articleCounter'
   import { movieCounterStore } from '@/stores/movieCounter'
   import { useCounterStore } from '@/stores/userCounter'
-  
+  import Yum from '@/components/Yum.vue'
+
+
   const userStore = useCounterStore()
   const movieStore = movieCounterStore()
   const articleStore = articleCounterStore()  
