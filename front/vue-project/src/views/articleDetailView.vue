@@ -62,7 +62,7 @@
   import { articleCounterStore } from '@/stores/articleCounter'
   import { movieCounterStore } from '@/stores/movieCounter'
   import { useCounterStore } from '@/stores/userCounter'
-
+  import Drawing from '@/components/Drawing.vue'
 
 
   const userStore = useCounterStore()
