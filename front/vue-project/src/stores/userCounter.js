@@ -54,6 +54,7 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         }
       })
   }
+
   const login = function(payload){
     const { username, password } = payload
     axios({
@@ -65,11 +66,12 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         console.log('로그인 성공')
         token.value = res.data.key
         is_login.value = true
-        router.push({name:'home'})
         getUserInfo()
+        router.push({name:'home'})
       })
       .catch((err) => {
         console.log('로그인 실패',err)
+        window.alert('아이디 혹은 비밀번호가 일치하지 않습니다')
       })
   }
   const getUserInfo = function() {
@@ -91,11 +93,13 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         console.log('내 정보 가져오기 성공')
       })
       .catch(err => console.log('내 정보 가져오기 실패', err))
-
+    
+    
     
   }
   
   const getProfileInfo = function(userId) {
+    // 유저 프로필 정보 가져오기
     axios({
       method : 'GET',
       url:`${API_URL}/users/${userId}/`,
@@ -111,13 +115,15 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         console.log('프로필 정보 가져오기 성공')
       })
       .catch(err => console.log('프로필 정보 가져오기 실패', err))
-
-      axios.get(`${API_URL}/users/${userId}/like_movies/`)
+  }
+  // 좋아요한 영화들 가져오기
+  const getLikeMovies = function(userId) {
+    axios.get(`${API_URL}/users/${userId}/like_movies/`)
       .then((res) => like_movies.value = res.data)
       .catch((err) => console.log(err))
   }
 
-
+  // 로그아웃
   const logout = function(){
     axios({
       method:'POST',
@@ -151,5 +157,5 @@ export const useCounterStore = defineStore('useCounterStore', () => {
     }
   }
   return { API_URL, token,  userInfo, is_login, profileInfo, like_movies,
-    signup, login, logout, getUserInfo ,getProfileInfo, follow, }
+    signup, login, logout, getUserInfo ,getProfileInfo, follow, getLikeMovies}
 }, {persist: true})

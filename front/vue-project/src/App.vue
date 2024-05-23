@@ -3,7 +3,7 @@
   <div class="container_app">
     <RouterView />
     <div style="height: 200px;"></div>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="movieStore.detailMovie">
     <DetailMovieHeader/>
     <Actors/>
   </div>
@@ -19,6 +19,7 @@
 
   onMounted(()=>{
     console.log('무비 디테일 마운트함 ')
+    console.log(route.params)
     movieStore.getDetailMovie(route.params.movieId)
   })
 </script>

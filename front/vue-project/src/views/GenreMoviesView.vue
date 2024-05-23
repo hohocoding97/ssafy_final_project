@@ -1,12 +1,11 @@
 <template>
   <div>
-    <!-- <h1>{{ route.params }}</h1>
-    <h3>{{ route }}</h3> -->
-    <h1 class="comment mx-auto my-4">oo장르 검색 결과입니다.</h1>
-    <div id="mainslider">
+    <h1 class="comment mx-auto my-4">{{ movieStore.genre[route.params.genre_code] }}장르 검색 결과입니다.</h1>
+    
+    <div v-if="movieStore.genreMovies" id="mainslider">
       <Splide :options="options">
-        <SplideSlide v-for="movie in movies" :key="movie.id" @click="router.push({name:'movieDetail', params:{movieId: movie.code}})">
-          <img :src="`${imgURL}${movie.poster_url}`" :alt="movie.title" style="width: 99%;">
+        <SplideSlide v-for="movie in movieStore.genreMovies" :key="movie.id" @click="router.push({ name: 'movieDetail', params: { movieId: movie.code } })">
+          <img :src="`${imgURL}${movie.poster_url}`" type="button" :alt="movie.title" style="width: 99%;">
         </SplideSlide>
       </Splide>
     </div>
@@ -14,18 +13,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { movieCounterStore } from '@/stores/movieCounter';
-import axios from 'axios';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
-const route = useRoute();
-const router = useRouter();
-const store = movieCounterStore();
-const movies = ref([]);
-const imgURL = store.imgURL;
+const route = useRoute()
+const router = useRouter()
+const movieStore = movieCounterStore()
+const imgURL = movieStore.imgURL
 
 // SPLIDE의 옵션 설정
 const options = {
@@ -43,18 +40,14 @@ const options = {
   },
 };
 
-const navigateToMovieDetail = (movieId) => {
-  router.push({ name: 'movieDetail', params: { movieId } });
-};
+const moveDetail = function (movieId) {
+  router.push({ name: 'movieDetail', params: { movieId: movieId } })
+}
 
-onMounted(() => {
-  const url = `${store.API_URL}/movies/genre/${route.params.genre_code}/`;
-  axios.get(url)
-    .then((res) => {
-      movies.value = res.data;
-    })
-    .catch((err) => console.log(err));
-});
+onBeforeMount(() => {
+  movieStore.getGenreMovies(route.params.genre_code)
+})
+
 </script>
 
 

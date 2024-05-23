@@ -1,48 +1,51 @@
 <template>
-  <div class="container">
-    <!-- 이미지부터 커뮤니티 검색 화면까지 -->
-    <div class="upper" style="text-align: center; margin-top: 20px;">
-      <Cat class="mx-auto my-5"/>
+  <div v-if="articleStore.articles">
+
+    <div class="container">
+      <!-- 이미지부터 커뮤니티 검색 화면까지 -->
+      <div class="upper" style="text-align: center; margin-top: 20px;">
+        <Cat class="mx-auto my-5"/>
         <div class = enter-ment>
           <h1>Takofix Community</h1>
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
           <button type="button" class="btn btn-dark" >Search</button>
-      </div>    
+        </div>    
+      </div>
+      
+      
+      <!-- 게시판 생성 -->
+      <table class="table">
+        <!-- <tr><td colspan="2"><h2>게시판</h2></td></tr> -->
+        <div style="height: 50px;"></div>
+        <tr class="header" style="margin-top: 30px;">
+          <td class="num">번호</td>
+          <td class="title">제목</td>
+          <td>작성자</td>
+          <td>작성일</td>
+        </tr>
+      </table>
+      <br>
+      <table style="text-align: center;">
+        <tr v-for="article in articleStore.articles">
+          <td class="num">{{ article.id }}</td>
+          <td class="title">
+            <RouterLink :to="{name:'articleDetail' ,params:{articleId:article.id}}" >{{ article.title }}</RouterLink>
+          </td>
+          <td ><RouterLink :to="{name:'profile' ,params:{userId : article.user}}">{{ article.username }}</RouterLink></td>
+          <td >{{ article.created_at.split('T')[0] }}</td>
+          <hr>
+        </tr>
+        <td><RouterLink :to="{name:'write'}" type="button" class="btn btn-dark" style="width: 80px;">글쓰기</RouterLink></td>
+      </table>
+      
+      <!-- <EasyDataTable
+        :headers="headers"
+        :items="items"
+        /> -->
+        
+      </div>
     </div>
-  
-    
-    <!-- 게시판 생성 -->
-    <table class="table">
-    <!-- <tr><td colspan="2"><h2>게시판</h2></td></tr> -->
-    <div style="height: 50px;"></div>
-    <tr class="header" style="margin-top: 30px;">
-        <td class="num">번호</td>
-        <td class="title">제목</td>
-        <td>작성자</td>
-        <td>작성일</td>
-    </tr>
-  </table>
-<br>
-  <table style="text-align: center;">
-    <tr v-for="article in articleStore.articles">
-        <td class="num">{{ article.id }}</td>
-        <td class="title">
-          <RouterLink :to="{name:'articleDetail' ,params:{articleId:article.id}}" >{{ article.title }}</RouterLink>
-        </td>
-        <td >{{ article.username }}</td>
-        <td >{{ article.created_at.split('T')[0] }}</td>
-        <hr>
-      </tr>
-    <td><RouterLink :to="{name:'write'}" type="button" class="btn btn-dark" style="width: 80px;">글쓰기</RouterLink></td>
-  </table>
-
-  <!-- <EasyDataTable
-    :headers="headers"
-    :items="items"
-  /> -->
-
-</div>
-</template>
+    </template>
 
 
 
@@ -57,6 +60,7 @@ const router = useRouter()
 onMounted(() => {
   //게시글 데이터 가져오자
   articleStore.getArticle()
+  
 })
 
 const goDetail =function(){

@@ -12,21 +12,21 @@
   <div class="card-container">
     <div class="card" style="width: 800px; margin-top: 20px;">
       <div class="card-body">
-        <h4 class="card-title" style="margin-left: 10px;">{{article.title}}</h4>
+        <h4 class="card-title" style="margin-left: 10px;">{{articleStore.article.title}}</h4>
         <div class="d-flex" style="justify-content: space-between;">
           <div class="owner">
-            <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-left: 10px; margin-top: 5px;">작성자 : {{article.username}}</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-left: 10px; margin-top: 5px;">작성자 : {{articleStore.article.username}}</h6>
             <button type="button" class="btn btn-dark" style="width: 80px; height: 30px; display: flex; align-items: center; justify-content: center;">Follow</button>
           </div>
           <!-- 삭제와 수정버튼 있는 곳(작성자만 수정 삭제가능하게하기) -->
-          <div v-if="userStore.userInfo.id === article.user" class="d-felx" style="margin-right: 10px;">
-            <button type="button" class="btn btn-secondary"  style="margin-right: 2px;">삭제</button>
-            <button type="button" class="btn btn-secondary" @click="router.push({name:'editArticle', params:{articleId:article.id}})">수정</button>
+          <div v-if="userStore.userInfo.id === articleStore.article.user" class="d-felx" style="margin-right: 10px;">
+            <button type="button" class="btn btn-secondary" @click="deleteArticle(articleStore.article.id)"   style="margin-right: 2px;">삭제</button>
+            <button type="button" class="btn btn-secondary" @click="router.push({name:'editArticle', params:{articleId:articleStore.article.id}})">수정</button>
           </div>
         </div>
         <div class="card mb-3" style="width: 100%; margin-top: 10px;">
           <div class="card-body">
-            <p class="card-text">{{article.content}}</p>
+            <p class="card-text">{{articleStore.article.content}}</p>
           </div>
         </div>
         <!-- 댓글 기능 구현 -->
@@ -36,9 +36,15 @@
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
+              <li v-for="comment in comments" style="margin-left: 20px;">
+              <div style="display: flex;  justify-content: space-between;">
+                <div>{{ comment.username }} - {{ comment.content }}</div>
+                <div>작성일 : {{ comment.created_at.split('T')[0] }}</div>
+              </div>
+              </li>
               <li class="list-group-item" style="inline-block">
-                <textarea class="form-control"  rows="3"></textarea>
-                <button type="button" class="btn btn-dark mt-3" @click="">댓글 작성</button>
+                <textarea class="form-control" v-model="content" rows="3"></textarea>
+                <button type="button"  class="btn btn-dark mt-3" @click="createComment(articleStore.article.id)">댓글 작성</button>
               </li>
             </ul>
           </div>
@@ -51,12 +57,12 @@
 
 <script setup>
   import axios from 'axios'
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, computed, onBeforeMount } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { articleCounterStore } from '@/stores/articleCounter'
   import { movieCounterStore } from '@/stores/movieCounter'
   import { useCounterStore } from '@/stores/userCounter'
-  import Drawing from '@/components/Drawing.vue'
+
 
 
   const userStore = useCounterStore()
@@ -64,16 +70,29 @@
   const articleStore = articleCounterStore()  
   const route = useRoute()
   const router = useRouter()
-  const article = ref({})
-  onMounted(() => {
-    axios.get(`${movieStore.API_URL}/community/article/${route.params.articleId}`)
-    .then((res) => {
-      console.log(res.data)
-      article.value = res.data
-    })
-    .catch(err => console.log(err))
+  const content = ref('')
+  const comments = computed(() => {
+    return articleStore.article.comment_set
   })
+  onBeforeMount(() => {
+    articleStore.getArticleDetail(route.params.articleId)
+  })
+  
 
+  const deleteArticle = function(articleId) {
+    articleStore.deleteArticle(articleId)
+    router.push({name:'community'})
+  }
+  const createComment = function(articleId) {
+    if (userStore.isLogin){
+      const payload = { articleId, content:content.value}
+      articleStore.createComment(payload)
+      content.value = ''
+      articleStore.getArticleDetail(route.params.articleId)
+    } else {
+      window.alert('로그인이 필요합니다')
+    }
+  }
 </script>
 
 <style scoped>
@@ -84,6 +103,7 @@
 }
 
 .card-container {
+  min-width: 450px;
   display: flex;
   justify-content: center; /* 수평 중앙 정렬 */
 }
