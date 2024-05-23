@@ -6,7 +6,7 @@
       <div style="margin-top: 20px;"></div>
       <PopularCarousel/>
       <LatestCarousel/>
-      <AllMovies/>
+      <!-- <AllMovies/> -->
   </div>
 </template>
 

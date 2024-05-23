@@ -25,5 +25,9 @@
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'MoveSans-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
 
 </style>

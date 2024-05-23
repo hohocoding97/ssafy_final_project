@@ -27,7 +27,7 @@
     <!-- 장르 버튼 -->
       <div class="col-md-6 col my-auto " >
         <div style="text-align: center;">
-          <h3>장르별 영화 찾기</h3>
+          <h3 id="find_genre">장르별 영화 찾기</h3>
         </div>
         <!-- 첫 번째 버튼 행 -->
         <div class="row mb-3" >
@@ -94,6 +94,23 @@
 </script>
 
 <style scoped>
+
+@font-face {
+    font-family: 'MoveSans-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Freesentation-9Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+    font-style: normal;
+}
+
+#find_genre {
+  font-family: 'MoveSans-Bold';
+  font-weight: 700;
+}
+
 .arrow {
   position: absolute;
   top: 50%;

@@ -4,7 +4,7 @@
     <div class="upper" style="text-align: center; margin-top: 20px;">
       <Drawing class="my-3"/>
       <div class="enter-ment">
-      <h1>Takofix Community</h1>
+      <h1 id="header">Takofix Community</h1>
       </div>
     </div>
 
@@ -77,6 +77,15 @@
 </script>
 
 <style scoped>
+
+@font-face {
+    font-family: 'MoveSans-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
+
+#header {
+
+}
 .owner {
   display: flex;
   align-items: center; /* 수직 중앙 정렬 */
