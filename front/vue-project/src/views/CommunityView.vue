@@ -34,7 +34,7 @@
         <td class="title" @click="goDetail(article.id)" type="button">
           {{ article.title }}
         </td>
-        <td @click="router.push({name:'profile' ,params:{userId : article.id}})" >{{ article.username }}</td>
+        <td @click="router.push({name:'profile' ,params:{userId : article.user}})" >{{ article.username }}</td>
         <td >{{ article.created_at.split('T')[0] }}</td>
         <hr>
       </tr>

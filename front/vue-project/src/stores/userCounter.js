@@ -162,7 +162,11 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         url: `${API_URL}/users/${profileInfo.value.id}/follow/`,
         headers : { Authorization : `Token ${token.value}` }
       })
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          console.log(res.data)
+          getUserInfo()
+          getProfileInfo(profileInfo.value.id)
+        })
         .catch((err) => console.log(err))
     }
   }

@@ -15,8 +15,12 @@
             <p id="follow" style="margin-right: 20px;">following : {{userStore.profileInfo.followings.length}}</p>
             
             <div v-if="userStore.userInfo.id !== userStore.profileInfo.id">
-              <button @click="follow"
-              type="button" class="btn btn-dark" id="btn">Follow</button>
+              
+              <button v-if="userStore.userInfo.followings.includes(userStore.profileInfo.id)"
+              @click="follow"
+              type="button" class="btn btn-dark" id="btn">unfollow</button>
+              <button v-else  @click="follow"
+              type="button" class="btn btn-dark" id="btn">follow</button>
             </div>
           
           </div>
@@ -24,10 +28,10 @@
       </div>
     </div>
   </div>
-  <div v-if="userStore.userInfo.id !== userStore.profileInfo.id">
+  <!-- <div v-if="userStore.userInfo.id !== userStore.profileInfo.id">
     <button @click="follow">follow</button>
     <button @click="follow">unfollow</button>
-  </div>
+  </div> -->
 <!-- 좋아요한 영화 모음 -->
   <div class="w-100" >
       <div id="Title">
@@ -78,6 +82,7 @@
   const follow = function(){ 
     userStore.follow() 
     userStore.getProfileInfo(route.params.userId)
+    userStore.getUserInfo()
   }
 
   // SPLIDE의 옵션 설정

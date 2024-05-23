@@ -1,23 +1,28 @@
 # ssafy_final_project
 ssafy final project
 
-## 팀원 정보 및 업무 분담
-### 탁호준
-- 팀장
-- 
 
 
-## Dj-Rest-Auth 설치 및 사용
-`pip install dj-rest-auth`
+## 팀 구성
 
-####토큰 보내기
-headers에 Authorization 값에 token값을 넣어서 넣어줘야함
+팀장 - 탁호준 (FullStack)
+팀원 - 이남경 (Front-End)
 
-키를 보낼때 앞에 접두사 `Token`작성 후 한 칸 띄어쓰기 후 token값이 들어가야함
+## 프로젝트 목표
+
+타코야끼를 컨셉으로한 영화 정보 제공 사이트 제작
+사용자가 영화 정보 뿐만 아니라 다양한 재미를 얻을 수 있도록 게임적 요소, 참여적 요소 추가
+
+## 개발 일정
+
+개발 기간 : 2024.05.08 - 2024.05.24
+
+![](https://velog.velcdn.com/images/lurelight/post/5ea7cb87-7fb4-461a-8597-74b9bdcb5c0b/image.png)
 
 
 
-## ChatGPT API를 이용한 영화 추천
+
+## ChatGPT API를 이용한 영화 추천(계획)
 ### 1. 유저가 좋아하는 영화 및 장르 입력
 ![유저 입력 창](/md_imgs/user_input_form.png)
 
@@ -43,25 +48,9 @@ movie_code는 tmdb 사이트에서 정한 영화 ID야
 ### 3. 답변 처리
 tmdb api를 이용해 movie_code를 이용해 영화 디테일 정보를 axios를 받아와서 유저에게 보여주기
 
-# Takofix
+# Takofix 프로젝트 내용
 
-### 팀 구성
-
-팀장 - 탁호준 (FullStack)
-팀원 - 이남경 (Front-End)
-
-### 프로젝트 목표
-
-타코야끼를 컨셉으로한 영화 정보 제공 사이트 제작
-사용자가 영화 정보 뿐만 아니라 다양한 재미를 얻을 수 있도록 게임적 요소, 참여적 요소 추가
-
-### 개발 일정
-
-개발 기간 : 2024.05.08 - 2024.05.24
-
-![](https://velog.velcdn.com/images/lurelight/post/5ea7cb87-7fb4-461a-8597-74b9bdcb5c0b/image.png)
-
-### 기반 작업
+## 프로젝트 설계
 
 **데이터 ERD**
 
