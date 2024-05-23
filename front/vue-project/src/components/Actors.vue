@@ -66,9 +66,8 @@ export default {
   }
   
   #Title {
-    font-size: large;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 900;
+    font-family:'MoveSans-Bold';
+    font-weight: 700;
     margin-left: 30px;
     margin-top: 20px;
     margin-bottom: 20px;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="comment mx-auto my-4">{{ movieStore.genre[route.params.genre_code] }}장르 검색 결과입니다.</h1>
+    <h1 class="comment mx-auto my-4" id="search">{{ movieStore.genre[route.params.genre_code] }} 검색 결과입니다.</h1>
     
     <div v-if="movieStore.genreMovies" id="mainslider">
       <Splide :options="options">
@@ -66,5 +66,16 @@ export default {
     margin-left: 10px;
     margin-right: 10px;
   }
-/* 여기에 스타일을 추가하세요 */
+
+@font-face {
+  font-family: 'MoveSans-Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
+
+#search {
+  font-family: 'MoveSans-Bold';
+  font-size: xx-large;
+  font-weight: 700;
+}
+
 </style>

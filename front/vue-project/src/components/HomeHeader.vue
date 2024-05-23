@@ -30,7 +30,7 @@
           <h3 id="find_genre">장르별 영화 찾기</h3>
         </div>
         <!-- 첫 번째 버튼 행 -->
-        <div class="row mb-3" >
+        <div class="row mb-3" id="genre_button">
           <div class="col-md-4 col">
             <button class="custom-btn btn-2" @click="moveGenreMovies(28)">액션</button>
           </div>
@@ -103,6 +103,9 @@
     font-style: normal;
 }
 
+#genre_button {
+  font-family: 'MoveSans-Bold';
+}
 #find_genre {
   font-family: 'MoveSans-Bold';
   font-weight: 700;
