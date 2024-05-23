@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import Movie, UserRating, MovieComment, Actor, Genre, Director, Trailer
-from .serializers import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer
+from .serializers import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer,ActorSerializer,DirectorSerializer
 from django.contrib.auth import get_user_model
 from pprint import pprint
 import random #영화 랜덤으로 뽑아올때
@@ -110,6 +110,27 @@ def movie_like(request, movie_pk):
     else:
         me.like_movies.add(movie)
         return Response({'is_like' : True}, status=status.HTTP_200_OK)
+
+# 영화 검색결과 반환해주기
+@api_view(['GET'])
+def search_movie(request, query):
+    movies = Movie.objects.filter(title__contains= query)
+    serializer = movieListSerializer(movies, many=True)
+    return Response(serializer.data)
+
+# 인물 검색 결과 반환해주기
+@api_view(['GET'])
+def search_actors(request, query):
+    actors = Actor.objects.filter(actor_name__contains = query)
+    serialzer = ActorSerializer(actors, many=True)
+    return Response(serialzer.data)
+
+# 감독 검색 결과 반환해주기
+@api_view(['GET'])
+def search_directors(request, query):
+    directors = Director.objects.filter(director_name__contains = query)
+    serializer = DirectorSerializer(directors, many=True)
+    return Response(serializer.data)
 
 ###################db에 영화 정보 가져오고 저장할 함수#######################
 import requests
