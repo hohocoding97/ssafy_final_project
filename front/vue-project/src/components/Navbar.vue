@@ -50,6 +50,7 @@ const query = ref('')
 const search = function(){
   searchStore.search(query.value)
   router.push({name:'search', params: { query: query.value }})
+  query.value = ''
 }
 
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="movieStore.detailMovie.actors.length !== 0" class="w-75 mx-auto">
+  <div v-if="movieStore.detailMovie.actors.length > 0" class="w-75 mx-auto">
     <h1 id="title">출연 배우</h1>
     <div id="mainslider" >
       <splide :options="options">

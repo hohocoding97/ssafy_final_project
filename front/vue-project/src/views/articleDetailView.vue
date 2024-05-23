@@ -12,7 +12,7 @@
   <div class="card-container">
     <div class="card" style="width: 800px; margin-top: 20px;">
       <div class="card-body">
-        <h4 class="card-title" style="margin-left: 10px;">{{articleStore.article.title}}</h4>
+        <h4 class="card-title" style="margin-left: 10px;">{{articleStore.article.title}}<span v-if="articleStore.article.created_at !== articleStore.article.updataed_at" style="font-size: x-small;">(수정됨)</span></h4>
         <div class="d-flex" style="justify-content: space-between;">
           <div class="owner">
             <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-left: 10px; margin-top: 5px;">작성자 : {{articleStore.article.username}}</h6>
