@@ -2,6 +2,7 @@
   <div v-if="movieStore.detailMovie">
     <DetailMovieHeader/>
     <Actors/>
+    
   </div>
 
 </template>
