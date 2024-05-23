@@ -16,7 +16,7 @@
         </div>
     </div>
     <div v-else>
-
+      <p style="text-align: center;">검색 결과가 없습니다...</p>
     </div>
       <hr>
     <!-- 배우 검색 결과 -->
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div v-else>
-
+      <p style="text-align: center;">검색 결과가 없습니다...</p>
     </div>
     <hr>
 
@@ -53,7 +53,7 @@
     </div> -->
   </div>
   <div v-else>
-    
+    <h3><strong>"{{ route.params.query }}"</strong>에 대한 검색결과가 없습니다...</h3>
   </div>
 </template>
 

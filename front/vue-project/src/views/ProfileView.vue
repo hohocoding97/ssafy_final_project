@@ -13,7 +13,11 @@
           <div class="d-flex justify-content-center align-items-center">
             <p id="follow" style="margin-right: 20px;">fOLLOWER : {{userStore.profileInfo.followers.length}}</p>
             <p id="follow" style="margin-right: 20px;">following : {{userStore.profileInfo.followings.length}}</p>
-            <button type="button" class="btn btn-dark" id="btn">Follow</button>
+            
+            <div></div>
+            <button @click="follow"
+            type="button" class="btn btn-dark" id="btn">Follow</button>
+          
           </div>
         </div>
       </div>
