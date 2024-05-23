@@ -11,8 +11,8 @@
         <div class="wrapper">
           <h2 class="profile-title">{{ userStore.profileInfo.username }}님의 페이지</h2>
           <div class="d-flex justify-content-center align-items-center">
-            <p id="follow" style="margin-right: 20px;">fOLLOWER : {팔로워 수}</p>
-            <p id="follow" style="margin-right: 20px;">following : {팔로워 수}</p>
+            <p id="follow" style="margin-right: 20px;">fOLLOWER : {{userStore.profileInfo.followers.length}}</p>
+            <p id="follow" style="margin-right: 20px;">following : {{userStore.profileInfo.followings.length}}</p>
             <button type="button" class="btn btn-dark" id="btn">Follow</button>
           </div>
         </div>
@@ -40,6 +40,7 @@
         <p class="ms-5">아직 "좋아요❤️"한 영화가 없습니다...</p>
       </div>
     </div>
+    <hr>
 
 <div>
   <div id="Title">
@@ -69,7 +70,10 @@
   })
   const profileImgURL = computed(() => `${userStore.API_URL}${userStore.profileInfo.image_url}`)
   
-  const follow = function(){ userStore.follow() }
+  const follow = function(){ 
+    userStore.follow() 
+    userStore.getProfileInfo(route.params.userId)
+  }
 
   // SPLIDE의 옵션 설정
   const options = {

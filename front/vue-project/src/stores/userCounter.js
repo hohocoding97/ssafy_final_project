@@ -17,6 +17,8 @@ export const useCounterStore = defineStore('useCounterStore', () => {
     email : '',
     nick_name : '',
     like_movies : [],
+    followers : [],
+    followings : []
   })
 
   const profileInfo = ref({
@@ -26,6 +28,8 @@ export const useCounterStore = defineStore('useCounterStore', () => {
     email : '',
     nick_name : '',
     like_movies : [],
+    followers : [],
+    followings : []
   })
 
   const signup = function(payload) {
@@ -90,6 +94,8 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         userInfo.value.email = res.data.email
         userInfo.value.nick_name = res.data.nick_name
         userInfo.value.like_movies = res.data.like_movies
+        userInfo.value.followers = res.data.followers
+        userInfo.value.followings = res.data.followings
         console.log('내 정보 가져오기 성공')
       })
       .catch(err => console.log('내 정보 가져오기 실패', err))
@@ -112,6 +118,8 @@ export const useCounterStore = defineStore('useCounterStore', () => {
         profileInfo.value.email = res.data.email
         profileInfo.value.nick_name = res.data.nick_name
         profileInfo.value.like_movies = res.data.like_movies
+        profileInfo.value.followings = res.data.followings
+        profileInfo.value.followers = res.data.followers
         console.log('프로필 정보 가져오기 성공')
       })
       .catch(err => console.log('프로필 정보 가져오기 실패', err))
@@ -137,6 +145,8 @@ export const useCounterStore = defineStore('useCounterStore', () => {
       userInfo.value.image_url = ''
       userInfo.value.email = ''
       userInfo.value.nick_name = ''
+      userInfo.value.followers = ''
+      userInfo.value.followings = ''
       is_login.value = false
       console.log('로그아웃성공',res.data)
     })

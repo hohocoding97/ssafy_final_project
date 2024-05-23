@@ -11,7 +11,7 @@ class userDetailSerializer(serializers.ModelSerializer):
   
   class Meta:
     model = get_user_model()
-    fields = ('username','id','image_url','email','nick_name','like_movies', 'followers', 'image_url')
+    fields = ('username','id','image_url','email','nick_name','like_movies', 'followers', 'image_url', 'followings')
   def get_followers(self, obj):
     return obj.followers.values('id', 'username')
   
