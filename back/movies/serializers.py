@@ -4,6 +4,7 @@ from .models import Movie, UserRating, MovieComment, Actor, Genre, Director, Tra
 from django.contrib.auth import get_user_model
 from django.db.models import Avg
 
+
 # 영화평점주기 위해
 class ratingSerializer(serializers.ModelSerializer):
   class Meta:
@@ -67,6 +68,8 @@ class movieDetailSerializer(serializers.ModelSerializer):
   trailers = trailerSerializer(many=True, read_only=True)
   userrating_set = UserRatingSerializer(many=True, read_only=True) #이게과연 필요한가....??
   average_rating = serializers.SerializerMethodField()
+  # liked_users = serializers.SerializerMethodField()
+
   class Meta:
     model = Movie
     fields = '__all__'
@@ -74,3 +77,7 @@ class movieDetailSerializer(serializers.ModelSerializer):
   def get_average_rating(self, obj):
       average = obj.userrating_set.aggregate(Avg('rating')).get('rating__avg')
       return average if average is not None else 0
+
+  # def get_liked_users(self, obj):
+  #   users = obj.user_set.all()  # 역참조를 통해 좋아하는 사용자들을 가져옴
+  #   return userDetailSerializer(users, many=True).data
