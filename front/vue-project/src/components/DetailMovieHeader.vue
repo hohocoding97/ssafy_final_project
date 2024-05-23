@@ -1,14 +1,14 @@
 <template>
   <div class="container">
 
-    <div class="poster col4">
-      <img  v-bind:src="`${imgURL}${movieStore.detailMovie.poster_url}`" alt="movie_poster">
+    <div class="poster ">
+        <img  v-bind:src="`${imgURL}${movieStore?.detailMovie?.poster_url}`" alt="movie_poster">
     </div>
-    <div class="detail col6">
-      <h2>{{ movieStore.detailMovie.title }}</h2>
+    <div class="detail ">
+      <h2>{{ movieStore?.detailMovie?.title }}</h2>
       <br>
-      <p> 개봉일 : {{ movieStore.detailMovie.release_date }}</p>
-      <p>{{ movieStore.detailMovie.overview }}</p>
+      <p> 개봉일 : {{ movieStore?.detailMovie?.release_date }}</p>
+      <p>{{ movieStore?.detailMovie?.overview }}</p>
       <!-- TMDB 평점 -->
       <div class="flex-wrapper">
         <div class="single-chart" style="margin-top: 10px;">
@@ -19,12 +19,12 @@
                 a 15.9155 15.9155 0 0 1 0 -31.831"
             />
             <path class="circle"
-              :stroke-dasharray="`${movieStore.detailMovie.score * 10}, 100`"
+              :stroke-dasharray="`${movieStore?.detailMovie?.score * 10}, 100`"
               d="M18 2.0845
                 a 15.9155 15.9155 0 0 1 0 31.831
                 a 15.9155 15.9155 0 0 1 0 -31.831"
             />
-            <text x="18" y="20.35" class="percentage">{{ (movieStore.detailMovie.score * 10).toFixed(0) }}%</text>
+            <text x="18" y="20.35" class="percentage">{{ (movieStore?.detailMovie?.score * 10).toFixed(0) }}%</text>
           </svg>
         </div>
         <!-- 댓글 작성자들이 준 평점 (수정 필요) -->
@@ -36,12 +36,12 @@
                 a 15.9155 15.9155 0 0 1 0 -31.831"
             />
             <path class="circle"
-              :stroke-dasharray="`${movieStore.detailMovie.average_rating}, 100`"
+              :stroke-dasharray="`${movieStore?.detailMovie?.average_rating}, 100`"
               d="M18 2.0845
                 a 15.9155 15.9155 0 0 1 0 31.831
                 a 15.9155 15.9155 0 0 1 0 -31.831"
             />
-            <text x="18" y="20.35" class="percentage">{{movieStore.detailMovie.average_rating}}%</text>
+            <text x="18" y="20.35" class="percentage">{{movieStore?.detailMovie?.average_rating}}%</text>
             
           </svg>
           
@@ -70,12 +70,12 @@
 
   const likeMovie = function(){
     if (userStore.is_login) {
-      movieStore.likeMovie(movieStore.detailMovie.code)
+      movieStore.likeMovie(movieStore?.detailMovie?.code)
     } else {
       window.alert('로그인이 필요합니다!')
     }
   }
-  const is_like = computed(() => userStore.userInfo.like_movies.includes(movieStore.detailMovie.code)) //좋아요한 무비면 true
+  const is_like = computed(() => userStore.userInfo.like_movies.includes(movieStore?.detailMovie?.code)) //좋아요한 무비면 true
 
 
 </script>

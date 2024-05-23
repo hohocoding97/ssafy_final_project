@@ -1,4 +1,5 @@
 <template>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
   <div class="container-fluid" style="background-color: rgb(195, 70, 64);">
     <RouterLink :to="{name:'home'}" class="site-logomark" style="text-decoration: none;">
@@ -74,5 +75,3 @@ const imgURL = movieStore.imgURL;
   font-family: 'Freesentation-9Black';
 }
 </style>
-  
-  

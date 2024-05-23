@@ -6,19 +6,19 @@
     <div class="row justify-content-center mt-5">
       <div class="col-md-6 col-12 text-center">
         <!-- <h3 style="color: white;" class="mt-3">랜덤 영화</h3> -->
-        <img v-if="movieStore.randomMovies"
-        @click="router.push({name:'movieDetail', params:{movieId: movieStore.randomMovies[0].code}})"
-        :src="`${imgURL}${movieStore.randomMovies[0].poster_url}`" 
-        type="button"
-        style=" width: 300px; height: 500px;"
-        >
-        <img v-else src="/src/assets/Random.png" alt="" style="margin-top: 20px; width: 80%;">
+
+
+          <img v-if="movieStore.randomMovies"
+          @click="router.push({name:'movieDetail', params:{movieId: movieStore.randomMovies[0].code}})"
+          :src="`${imgURL}${movieStore.randomMovies[0].poster_url}`" 
+          type="button"
+          style=" width: 320px; height: 500px;"
+          >
+          <img v-else src="/src/assets/Random.png" alt="랜덤이미지" style="width: 320px; height: 500px;">
         <br> 
         <!-- v-if 써서 보이게 할 버튼 -->
         <div>
-          
-          <h5 style="color: whitesmoke; margin-top: 5px;"><strong>랜덤! &#8595;</strong></h5>
-          
+          <!-- <h5 style="color: whitesmoke; margin-top: 5px;"><strong>랜덤! &#8595;</strong></h5> -->
           <redbutton @click="getRandomMovies"/>
         </div>
         <!-- <button @click="getRandomMovies" type="button" class="btn btn-dark">🎲</button> -->
@@ -57,9 +57,6 @@
           </div>
           <div class="col-md-4 col">
             <button class="custom-btn btn-14" @click="moveGenreMovies(10402)">음악</button>
-          </div>
-          <div class="col-md-4 col" >
-
           </div>
         </div>
       </div>

@@ -33,6 +33,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
 class ArticleDetailSerializer(serializers.ModelSerializer):
   username = serializers.CharField(source='user.username', read_only=True)
+  # user_id = serializers.CharField(source='user.id', read_only = True)
   comment_set = CommentListSerializer(many=True, read_only=True)
   class Meta:
     model = Article

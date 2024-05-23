@@ -2,7 +2,7 @@
   <div class="container">
   <!-- 이미지부터 커뮤니티 검색 화면까지 -->
   <div class="upper" style="text-align: center; margin-top: 20px;">
-    <Typing class= "my-3"style="margin-left: 600px;"/>
+    <Typing class= "my-3" style="margin-left: 600px;"/>
     <div class="enter-ment" style="margin-bottom: 20px;">
       <h1>Takofix Community</h1>
     </div>
@@ -14,9 +14,9 @@
       <div class="card-body">
         <body>
           <form>
-            <table>
+            <table style="width: 100%;">
               <tr><td class="header">Title</td></tr>
-              <tr><td><input type="text" v-model="title" placeholder="제목을 입력하세요" name="title"></td></tr>
+              <tr><td><input type="text" v-model="title" placeholder="제목을 입력하세요" name="title" style="width: 100%;"></td></tr>
               <tr><td class="header">Content</td></tr>
               <tr><td><textarea v-model="content" placeholder="내용을 입력하세요" name="detail"></textarea></td></tr>
               <div id="bottom" style="margin-top: 10px;">
@@ -47,8 +47,14 @@
   const title = ref('')
   const content = ref('')
   const writeArticle = function(){
-    const payload = {title: title.value, content: content.value}
-    articleStore.writeArticle(payload)
+    if (title.value.trim() == ''){
+      window.alert('제목을 작성해주세요')      
+    } else if (content.value.trim() == '') {
+      window.alert('내용을 작성해주세요')
+    } else {
+      const payload = {title: title.value, content: content.value}
+      articleStore.writeArticle(payload)
+    }
   }
 
 </script>
@@ -72,7 +78,7 @@ table {
 }
 
 textarea {
-  width: 600px;
+  width: 100%;
   height: 400px;
   border-radius: 5px;
   padding-left: 10px;

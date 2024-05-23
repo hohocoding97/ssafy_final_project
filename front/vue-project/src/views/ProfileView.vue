@@ -11,9 +11,9 @@
         <h4>{{ userStore.profileInfo.username }}님이 "좋아요❤️"한 영화</h4>
       </div>
       <hr class=" mx-auto" style="width: 95%;">
-      <div id="mainslider" v-if="userStore.profileInfo.like_movies.length > 0">
+      <div id="mainslider" v-if="userStore.like_movies.like_movies.length > 0">
         <splide :options="options">
-          <splide-slide v-for="movie in userStore.profileInfo.like_movies" :key="movie.id" @click="router.push({name:'movieDetail', params:{movieId: movie.code}})">
+          <splide-slide v-for="movie in userStore.like_movies.like_movies" :key="movie.id" @click="router.push({name:'movieDetail', params:{movieId: movie.code}})">
             <img type="button" :src="`${imgURL}${movie.poster_url}`" :alt="movie.title" style="width: 99%;">
           </splide-slide>
         </splide>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-  import { onMounted, computed } from 'vue';
+  import { onMounted, computed, onBeforeMount } from 'vue';
   import { useRoute, useRouter } from 'vue-router'
   import { useCounterStore } from '@/stores/userCounter'
   import { movieCounterStore } from '@/stores/movieCounter'
@@ -39,8 +39,9 @@
   const movieStore = movieCounterStore()
   const imgURL = movieStore.imgURL
   
-  onMounted(() => {
+  onBeforeMount(() => {
     userStore.getProfileInfo(route.params.userId)
+    userStore.getLikeMovies(route.params.userId)
   })
   const profileImgURL = computed(() => `${userStore.API_URL}${userStore.profileInfo.image_url}`)
   
