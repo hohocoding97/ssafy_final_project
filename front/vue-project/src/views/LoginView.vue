@@ -21,7 +21,7 @@
             </div>
             <div style="margin-bottom: 10px;"> 
               <label for="password" style="margin-left: 20px;">PASSWORD : </label>
-              <input type="text" v-model.trim="password" id="password" placeholder="PW를 입력하세요." style="margin-left: 50px; width: 200px;">
+              <input type="password"  v-model.trim="password" id="password" placeholder="PW를 입력하세요." style="margin-left: 50px; width: 200px;">
             </div>
             <div style="text-align: center; margin-top: 30px;">
               <input type="submit" value = 'Login' class="btn btn-dark" style="margin-right: 30px;">
