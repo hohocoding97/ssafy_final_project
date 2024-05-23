@@ -157,23 +157,23 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-import os
-import environ
+# import os
+# import environ
 
-env = environ.Env(
-    # 선언된 환경 변수의 기본 값 설정
-    DEBUG=(bool, False)
-)
+# env = environ.Env(
+#     # 선언된 환경 변수의 기본 값 설정
+#     DEBUG=(bool, False)
+# )
 
-# .env 파일 경로 지정 (기본적으로 프로젝트 루트의 .env 파일을 사용합니다.)
-environ.Env.read_env()
+# # .env 파일 경로 지정 (기본적으로 프로젝트 루트의 .env 파일을 사용합니다.)
+# environ.Env.read_env()
 
 
-# DEBUG 설정
-# DEBUG=env('DEBUG')
+# # DEBUG 설정
+# # DEBUG=env('DEBUG')
 
-# .env 파일에서 가져올 환경 변수 추가
-TMDB_API_KEY1=env('TMDB_API_KEY1')
+# # .env 파일에서 가져올 환경 변수 추가
+# TMDB_API_KEY1=env('TMDB_API_KEY1')
 
 AUTH_USER_MODEL='accounts.User'
 #accounts 앱의 User 클래스
