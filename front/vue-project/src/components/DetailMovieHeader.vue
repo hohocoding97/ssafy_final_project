@@ -5,7 +5,7 @@
         <img  v-bind:src="`${imgURL}${movieStore?.detailMovie?.poster_url}`" alt="movie_poster">
     </div>
     <div class="detail ">
-      <h2>{{ movieStore?.detailMovie?.title }}</h2>
+      <h2 id="title">{{ movieStore?.detailMovie?.title }}</h2>
       <br>
       <p> 개봉일 : {{ movieStore?.detailMovie?.release_date }}</p>
       <p>{{ movieStore?.detailMovie?.overview }}</p>
@@ -82,6 +82,15 @@
 
 <style scoped>
 
+@font-face {
+    font-family: 'MoveSans-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
+
+#title {
+  font-family: 'MoveSans-Bold';
+  font-weight: 700;
+}
 .container {
   display: flex;
   justify-content: center;
