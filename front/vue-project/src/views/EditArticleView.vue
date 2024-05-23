@@ -1,10 +1,10 @@
 <template>
   <div class="container">
   <!-- 이미지부터 커뮤니티 검색 화면까지 -->
-  <div class="upper" style="text-align: center; margin-top: 20px;">
+  <div class="upper" style="text-align: center;">
     <Yum class="my-3"/>
     <div class="enter-ment">
-    <h1>Takofix Community</h1>
+    <h1 id="header">Takofix Community</h1>
     </div>
   </div>
 
@@ -67,6 +67,11 @@
 </script>
 
 <style scoped>
+
+@font-face {
+    font-family: 'MoveSans-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
 .owner {
   display: flex;
   align-items: center; /* 수직 중앙 정렬 */
@@ -90,7 +95,7 @@
 }
 
 .reply-card {
-  margin-top: 20px !important; /* 항상 30px의 여백을 위에 추가 */
+  margin-top: 20px !important;
 }
 
 textarea {

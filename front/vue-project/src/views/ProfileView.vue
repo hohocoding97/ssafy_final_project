@@ -1,14 +1,32 @@
 <template>
-
-  <h2 style="text-align: center;">{{ userStore.profileInfo.username }}님의 페이지</h2>
+  <!-- 프로필 이미지부터 00님 페이지 -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="wrapper">
+          <img src="/src/assets/face.png" alt="face" class="profile-image">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="wrapper">
+          <h2 class="profile-title">{{ userStore.profileInfo.username }}님의 페이지</h2>
+          <div class="d-flex justify-content-center align-items-center">
+            <p id="follow" style="margin-right: 20px;">fOLLOWER : {팔로워 수}</p>
+            <p id="follow" style="margin-right: 20px;">following : {팔로워 수}</p>
+            <button type="button" class="btn btn-dark" id="btn">Follow</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div v-if="userStore.userInfo.id !== userStore.profileInfo.id">
     <button @click="follow">follow</button>
     <button @click="follow">unfollow</button>
   </div>
-
+<!-- 좋아요한 영화 모음 -->
   <div class="w-100" >
       <div id="Title">
-        <h4>{{ userStore.profileInfo.username }}님이 "좋아요❤️"한 영화</h4>
+        <h4 id="fav_mov">{{ userStore.profileInfo.username }}님이 "좋아요❤️"한 영화 모음</h4>
       </div>
       <hr class=" mx-auto" style="width: 95%;">
       <div id="mainslider" v-if="userStore.like_movies.like_movies.length > 0">
@@ -18,11 +36,17 @@
           </splide-slide>
         </splide>
       </div>
-      <div v-else>
+      <div v-else id="else">
         <p class="ms-5">아직 "좋아요❤️"한 영화가 없습니다...</p>
       </div>
     </div>
 
+<div>
+  <div id="Title">
+    <h4 id="written">{{ userStore.profileInfo.username }}님이 작성한 게시글 모음</h4>
+  </div>
+
+</div>
 </template>
 
 <script setup>
@@ -92,17 +116,74 @@ export default {
   
 <style scoped>
 
-  #mainslider {
-    margin-left: 1px;
-    margin-right: 1px;
-  }
-  
-  #Title {
-    font-size: large;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 900;
-    margin-left: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+@font-face {
+    font-family: 'Freesentation-9Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MoveSans-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
+.container {
+  /* margin-top: 50px; 페이지 상단 여백 조정 */
+}
+
+.wrapper {
+  text-align: center; /* 내용 가운데 정렬 */
+}
+
+.profile-image {
+  border-radius: 50%; /* 원형 모양으로 이미지 변형 */
+  width: 200px; /* 이미지 너비 조정 */
+  margin-top: 20px;
+}
+
+.profile-title {
+  margin-top: 50px;
+  font-family: 'MoveSans-Bold';
+  font-weight: 700;
+}
+
+#mainslider {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+#Title {
+  font-family: 'MoveSans-Bold';
+  font-size: larger;
+  font-weight: 700;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#follow {
+  font-family: 'MoveSans-Bold';
+  font-size: larger;
+}
+
+#btn {
+  font-family: 'Freesentation-9Black';
+}
+
+#fav_mov {
+  font-family: 'MoveSans-Bold';
+  font-size: larger;
+  font-weight: 700;
+}
+
+#else {
+  font-family: 'MoveSans-Bold';
+  font-size: larger;
+}
+
+#written {
+  font-family: 'MoveSans-Bold';
+  font-size: larger;
+  font-weight: 700;
+}
+
 </style>

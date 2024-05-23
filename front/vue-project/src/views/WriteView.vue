@@ -1,8 +1,8 @@
 <template>
   <div class="container">
   <!-- 이미지부터 커뮤니티 검색 화면까지 -->
-  <div class="upper" style="text-align: center; margin-top: 20px;">
-    <Typing class= "my-3" style="margin-left: 600px;"/>
+  <div class="upper" style="text-align: center; ">
+    <Typing class= "my-3 " style="margin-left: 600px; margin-top: 20px;"/>
     <div class="enter-ment" style="margin-bottom: 20px;">
       <h1>Takofix Community</h1>
     </div>
