@@ -109,7 +109,7 @@ h3 {
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
 }
 .search_movie {
-  font-weight: 500;
+  font-weight: 700;
   font-family: 'MoveSans-Bold' ;
   font-size: larger;
 }
