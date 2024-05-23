@@ -111,7 +111,7 @@ h3 {
 .search_movie {
   font-weight: 500;
   font-family: 'MoveSans-Bold' ;
-  font-size: larger;
+  font-size: xx-large;
 }
 
 
