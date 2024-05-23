@@ -16,7 +16,8 @@
 
     
     <!-- 게시판 생성 -->
-  <div class="board">
+
+  <div class="board"  >
   <div style="height: 50px;"></div>
   <table class="table">
     <tr class="header" style="margin-top: 30px;">
@@ -38,7 +39,7 @@
         <hr>
       </tr>
     </table>
-    <td><RouterLink :to="{name:'write'}" type="button" class="btn btn-dark" style="width: 80px; margin-left: 730px; margin-top: 20px;">글쓰기</RouterLink></td>
+    <td><RouterLink :to="{name:'write'}" type="button" class="btn btn-dark " style=" margin-left: 980px; margin-top: 20px;">글쓰기</RouterLink></td>
   </div>
 
 </template>

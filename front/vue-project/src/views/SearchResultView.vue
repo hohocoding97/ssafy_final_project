@@ -2,7 +2,7 @@
   <div v-if="searchStore.movieSearchResults || searchStore.actorSearchResults || searchStore.directorSearchResults">
     
     <!-- 영화 검색 결과 -->
-    <h3>"{{ route.params.query }}" <strong>영화</strong> 검색결과입니다.</h3>
+    <h3 id="main">"{{ route.params.query }}" <strong>영화</strong> 검색결과입니다.</h3>
     <div v-if="searchStore.movieSearchResults.length > 0" class="container" >
         <div 
           v-for="movie in searchStore.movieSearchResults" style="width: 200px;">
@@ -16,7 +16,11 @@
         </div>
     </div>
     <div v-else>
-      <p style="text-align: center;">검색 결과가 없습니다...</p>
+      <div class= "search_movie" style ="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <img src="/src/assets/4.png" alt="" id="Oops1">
+        <p style="text-align: center;">Oops! 검색 결과가 없습니다!</p>
+        <p>검색어를 다시 입력해주세요!</p>
+      </div>
     </div>
       <hr>
     <!-- 배우 검색 결과 -->
@@ -32,7 +36,11 @@
       </div>
     </div>
     <div v-else>
-      <p style="text-align: center;">검색 결과가 없습니다...</p>
+      <div class= "search_movie" style ="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <img src="/src/assets/1.png" alt="" id="Oops1">
+        <p style="text-align: center;">Oops! 검색 결과가 없습니다!</p>
+        <p>검색어를 다시 입력해주세요!</p>
+      </div>
     </div>
     <hr>
 
@@ -88,4 +96,23 @@
 h3 {
   text-align: center;
 }
+
+#Oops1 {
+  text-align: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+}
+
+@font-face {
+    font-family: 'MoveSans-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/MoveSans-Bold.woff2') format('woff2');
+}
+.search_movie {
+  font-weight: 500;
+  font-family: 'MoveSans-Bold' ;
+  font-size: larger;
+}
+
+
 </style>
