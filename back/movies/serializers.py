@@ -78,6 +78,9 @@ class movieDetailSerializer(serializers.ModelSerializer):
       average = obj.userrating_set.aggregate(Avg('rating')).get('rating__avg')
       return average if average is not None else 0
 
-  # def get_liked_users(self, obj):
-  #   users = obj.user_set.all()  # 역참조를 통해 좋아하는 사용자들을 가져옴
-  #   return userDetailSerializer(users, many=True).data
+
+class movieCommentSerializer(serializers.ModelSerializer):
+  class Meta:
+     model = MovieComment
+     fields = '__all__'
+     read_only_fields = ('movie')

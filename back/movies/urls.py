@@ -15,6 +15,7 @@ urlpatterns = [
     path('search/<str:query>/movie/', views.search_movie),
     path('search/<str:query>/actor/', views.search_actors),
     path('search/<str:query>/director/', views.search_directors),
+    # path('<int:movie_id>/movie_comments/', views.movie_comments),
     
 
     ######### 영화 초기에 저장하는 용도, 나중에 배포를 하게 된다면 닫을 것!! ##################

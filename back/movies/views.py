@@ -1,4 +1,3 @@
-from turtle import st
 from django.shortcuts import render, get_object_or_404
 from django.templatetags.i18n import language
 from rest_framework.response import Response
@@ -6,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import Movie, UserRating, MovieComment, Actor, Genre, Director, Trailer
-from .serializers import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer,ActorSerializer,DirectorSerializer
+from .serializers import movieListSerializer, movieDetailSerializer, ratingSerializer, movieCommentSerializer,ActorSerializer,DirectorSerializer, movieCommentSerializer
 from django.contrib.auth import get_user_model
 from pprint import pprint
 import random #영화 랜덤으로 뽑아올때
@@ -131,6 +130,20 @@ def search_directors(request, query):
     directors = Director.objects.filter(director_name__contains = query)
     serializer = DirectorSerializer(directors, many=True)
     return Response(serializer.data)
+
+# # 영화 댓글 확인
+# @api_view(['GET', 'POST'])
+# def movie_comments(request, movie_id):
+#     if request.method == 'GET':
+#         movie = Movie.objects.get(pk=movie_id)
+#         serializer = movieCommentSerializer(movie)
+#         return Response(serializer.data)
+#     elif request.method == 'POST':
+#         movie = Movie.objects.get(pk=movie_id)
+#         serializer = movieCommentSerializer(data=request.data)
+#         if serializer.is_valid(raise_exception=True):
+#             serializer.save(movie=movie)
+#             return Response(request.data, status=status.HTTP_201_CREATED)
 
 ###################db에 영화 정보 가져오고 저장할 함수#######################
 import requests
