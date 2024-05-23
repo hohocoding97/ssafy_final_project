@@ -44,7 +44,7 @@ export const articleCounterStore = defineStore('articleCounterStore', () => {
   }
 
   const getArticleDetail = function(articleId) {
-    axios.get(`${movieStore.API_URL}/community/article/${articleId}`)
+    axios.get(`${movieStore.API_URL}/community/article/${articleId}/`)
     .then((res) => {
       console.log(res.data)
       article.value = res.data
@@ -91,8 +91,8 @@ export const articleCounterStore = defineStore('articleCounterStore', () => {
       headers: {Authorization: `Token ${userStore.token}`},
     })
       .then(res => {
+        getArticleDetail(articleId)
         console.log('댓글 생성 성공', res.data)
-        getArticleDetail()
       })
       .catch(err => console.log(err))
   }

@@ -11,6 +11,7 @@ import WriteView from '@/views/WriteView.vue'
 import articleDetailView from '@/views/articleDetailView.vue'
 import EditArticleView from '@/views/EditArticleView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import SearchResultViews from '@/views/SearchResultView.vue'
 
 import { useCounterStore } from '@/stores/userCounter'
 
@@ -88,6 +89,11 @@ const router = createRouter({
       name : 'editArticle',
       component: EditArticleView
     },
+    {
+      path: '/search/:query',
+      name : 'search',
+      component : SearchResultViews,
+    }
     
   ]
 })

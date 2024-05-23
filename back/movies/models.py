@@ -11,6 +11,7 @@ class Actor(models.Model):
 class Director(models.Model):
   director_code = models.IntegerField(primary_key=True)
   director_name = models.TextField()
+  profile_path = models.TextField(null=True)
   
 class Genre(models.Model):
   genre_code = models.IntegerField(primary_key=True) #장르 코드를 pk로 사용

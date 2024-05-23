@@ -11,6 +11,7 @@
         </splide-slide>
       </splide>
     </div>
+    
   </div>
 </template>
 

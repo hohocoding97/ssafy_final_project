@@ -12,6 +12,9 @@ urlpatterns = [
     path('<int:movie_pk>/comment/', views.movie_comment), #영화 한줄평쓰기
     path('<int:movie_comment_pk>/comment_ud/', views.movie_comment_del_edit), #영화한줄평 삭제또는 수정
     path('<int:movie_pk>/like/', views.movie_like),         #영화에 좋아요 or 좋아요 취소
+    path('search/<str:query>/movie/', views.search_movie),
+    path('search/<str:query>/actor/', views.search_actors),
+    path('search/<str:query>/director/', views.search_directors),
     
 
     ######### 영화 초기에 저장하는 용도, 나중에 배포를 하게 된다면 닫을 것!! ##################

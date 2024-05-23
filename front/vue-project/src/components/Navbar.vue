@@ -15,9 +15,9 @@
       <div class="navbar-nav p-3">
         <RouterLink style="margin-right: 10px; margin-top: 5px; text-decoration: none; color: black;">TakoTalk</RouterLink>
         <RouterLink :to="{name:'community'}" style="margin-right: 10px; margin-top: 5px; text-decoration: none; color: black;">Community</RouterLink>
-        <RouterLink style="margin-right: 10px; margin-top: 5px; text-decoration: none; color: black;">AI Movie Recommend</RouterLink>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <RouterLink style="margin-right: 10px; margin-top: 5px; text-decoration: none; color: black;">AI 추천</RouterLink>
+        <form class="d-flex" role="search" @submit.prevent="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="query">
           <button class="btn btn-dark" type="submit" style="margin-right: 10px;">Search</button>
         </form>
         <p></p>
@@ -33,14 +33,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { movieCounterStore } from '@/stores/movieCounter';
+import { ref } from 'vue'
+import { useRouter, RouterLink } from 'vue-router'
+import { movieCounterStore } from '@/stores/movieCounter'
 import { useCounterStore } from '@/stores/userCounter'
-import { RouterLink } from 'vue-router';
+import { searchCounterStore } from '@/stores/searchCounter' 
 
-const movieStore = movieCounterStore();
+const movieStore = movieCounterStore()
 const userStore = useCounterStore()
-const imgURL = movieStore.imgURL;
+const searchStore = searchCounterStore()
+const router = useRouter()
+const imgURL = movieStore.imgURL
+const query = ref('')
+
+
+const search = function(){
+  searchStore.search(query.value)
+  router.push({name:'search', params: { query: query.value }})
+}
 
 </script>
 
