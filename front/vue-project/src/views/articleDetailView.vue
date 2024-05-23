@@ -84,7 +84,7 @@
     router.push({name:'community'})
   }
   const createComment = function(articleId) {
-    if (userStore.isLogin){
+    if (userStore.userInfo.id){
       const payload = { articleId, content:content.value}
       articleStore.createComment(payload)
       content.value = ''

@@ -21,11 +21,11 @@
           <button class="btn btn-dark" type="submit" style="margin-right: 10px;">Search</button>
         </form>
         <p></p>
-        <a v-if="userStore.is_login === true" @click="userStore.logout()" class="btn btn-dark" type="button" style="margin-right: 10px;">logout</a>
-        <RouterLink v-if="userStore.is_login === true" :to="{name:'profile' ,params : { userId : userStore.userInfo.id}}"
+        <a v-if="userStore.userInfo.id" @click="userStore.logout()" class="btn btn-dark" type="button" style="margin-right: 10px;">logout</a>
+        <RouterLink v-if="userStore.userInfo.id" :to="{name:'profile' ,params : { userId : userStore.userInfo.id}}"
         class="btn btn-dark" type="button" style="margin-right: 10px;">My</RouterLink>
-        <RouterLink v-if="userStore.is_login === false" :to="{name:'SignUpView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">signup</RouterLink>
-        <RouterLink v-if="userStore.is_login === false" :to="{name:'LoginView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">login</RouterLink>
+        <RouterLink v-if="!userStore.userInfo.id" :to="{name:'SignUpView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">signup</RouterLink>
+        <RouterLink v-if="!userStore.userInfo.id" :to="{name:'LoginView'}" class="btn btn-dark" type="button" style="margin-right: 10px;">login</RouterLink>
       </div>
     </div>
   </div>
