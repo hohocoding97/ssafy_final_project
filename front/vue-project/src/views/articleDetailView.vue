@@ -36,7 +36,7 @@
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li v-for="comment in comments" style="margin-left: 20px;">
+              <li v-for="comment in articleStore.article.comment_set" style="margin-left: 20px;">
               <div style="display: flex;  justify-content: space-between;">
                 <div>{{ comment.username }} - {{ comment.content }}</div>
                 <div>작성일 : {{ comment.created_at.split('T')[0] }}</div>
@@ -57,13 +57,12 @@
 
 <script setup>
   import axios from 'axios'
-  import { ref, onMounted, computed, onBeforeMount } from 'vue'
+  import { ref, onMounted, computed, onBeforeMount, watch } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { articleCounterStore } from '@/stores/articleCounter'
   import { movieCounterStore } from '@/stores/movieCounter'
   import { useCounterStore } from '@/stores/userCounter'
-
-
+  import Drawing from '@/components/Drawing.vue'
 
   const userStore = useCounterStore()
   const movieStore = movieCounterStore()
@@ -71,9 +70,8 @@
   const route = useRoute()
   const router = useRouter()
   const content = ref('')
-  const comments = computed(() => {
-    return articleStore.article.comment_set
-  })
+
+
   onBeforeMount(() => {
     articleStore.getArticleDetail(route.params.articleId)
   })
@@ -85,10 +83,10 @@
   }
   const createComment = function(articleId) {
     if (userStore.userInfo.id){
-      const payload = { articleId, content:content.value}
+      const payload = { articleId: articleStore.article.id, content:content.value}
       articleStore.createComment(payload)
+      // articleStore.getArticleDetail(route.params.articleId)
       content.value = ''
-      articleStore.getArticleDetail(route.params.articleId)
     } else {
       window.alert('로그인이 필요합니다')
     }
