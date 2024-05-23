@@ -1,48 +1,110 @@
 <template>
-<div class="container">
-  <button class="button">
-    Button
-  </button>
-</div>
+  <div class="container">
+    <!-- 이미지부터 커뮤니티 검색 화면까지 -->
+    <div class="upper" style="text-align: center; margin-top: 20px;">
+      <Cat class="mx-auto my-5"/>
+      <div class="enter-ment">
+        <h1>Takofix Community</h1>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 400px;">
+        <button type="button" class="btn btn-dark">Search</button>
+      </div>
+    </div>
+
+    <!-- 게시판 생성 -->
+    <div style="height: 50px;"></div>
+    <table class="table">
+      <tr class="header" style="margin-top: 30px;">
+        <td class="num">번호</td>
+        <td class="title">제목</td>
+        <td>작성자</td>
+        <td>작성일</td>
+      </tr>
+      <tr v-for="article in articleStore.articles" :key="article.id">
+        <td class="num">{{ article.id }}</td>
+        <td class="title">
+          <RouterLink :to="{name:'articleDetail', params:{articleId:article.id}}" class="link">{{ article.title }}</RouterLink>
+        </td>
+        <td>{{ article.username }}</td>
+        <td>{{ article.created_at.split('T')[0] }}</td>
+      </tr>
+    </table>
+    <hr>
+    <div class="button">
+      <RouterLink :to="{name:'write'}" type="button" class="btn btn-dark" style="width: 80px;">글쓰기</RouterLink>
+    </div>
+  </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import { useRouter, RouterLink } from 'vue-router';
+import { onMounted } from 'vue'
+import { articleCounterStore } from '@/stores/articleCounter'
+import Cat from '@/components/Cat.vue'
 
+const articleStore = articleCounterStore()
+const router = useRouter()
+
+onMounted(() => {
+  articleStore.getArticle()
+})
 </script>
 
 <style scoped>
 .container {
-  position: relative;
-  width: 4.5em;
-  height: 4em;
-  background-color: #644dff;
-  overflow: hidden;
-  border-radius: 100%;
+  width: 1000px;
+  margin: 0 auto;
+}
+.upper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  scale: 2;
-  box-shadow: 0 .5em #4836bb;
-  transition: all .1s ease;
-  filter: drop-shadow(0 6px 2px #4836bb38);
-  border: 1px solid #4836bb;
 }
-
+.upper input,
+.upper button {
+  display: inline-block;
+}
+.upper input {
+  margin-top: 10px;
+}
+.enter-ment {
+  text-align: center;
+  margin-top: 20px;
+}
+table {
+  margin: auto;
+  width: 700px;
+  border-radius: 5px;
+  border-collapse: collapse;
+  border-top: none;
+}
+.header {
+  background-color: rgb(218, 231, 255);
+  text-align: center;
+}
+.table td,
+.table th {
+  border-bottom: 1px lightgray solid;
+  height: 30px;
+  font-size: 14px;
+}
+.num {
+  width: 50px;
+}
+.title {
+  width: 500px;
+}
 .button {
-  font-weight: 800;
-  cursor: pointer;
-  position: absolute;
-  text-transform: uppercase;
-  height: 110%;
-  width: 110%;
-  background-color: #644dff;
-  color: white;
+  text-align: right;
+  margin-top: 20px;
 }
 
-.container:has(.button:active) {
-  box-shadow: none;
-  margin-top: 2em;
-  filter: drop-shadow(0 3px 1px #4836bbbe);
+/* Add this CSS to remove the white box around the title */
+.link {
+  text-decoration: none;
+  color: inherit;
 }
-
+.link:focus,
+.link:hover {
+  outline: none;
+}
 </style>

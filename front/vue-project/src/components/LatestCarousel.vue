@@ -2,7 +2,7 @@
   <!-- 영화 carousel -->
     <div class="w-100">
       <div id="Title">
-        <h1>최신 영화</h1>
+        <h1 id="header">최신 영화</h1>
       </div>
       <div id="mainslider" >
         <splide :options="options">
@@ -79,5 +79,14 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  
+  #header {
+  font-size: xx-large;
+  font-family:'MoveSans-Bold';
+  font-weight: 700;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
   </style>
     
