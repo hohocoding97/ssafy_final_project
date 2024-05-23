@@ -64,6 +64,7 @@
   import { useCounterStore } from '@/stores/userCounter'
   import Drawing from '@/components/Drawing.vue'
 
+
   const userStore = useCounterStore()
   const movieStore = movieCounterStore()
   const articleStore = articleCounterStore()  

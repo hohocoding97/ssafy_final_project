@@ -3,7 +3,7 @@
 
     <div class="container">
       <!-- 이미지부터 커뮤니티 검색 화면까지 -->
-      <div class="upper" style="text-align: center; margin-top: 20px;">
+      <div class="upper" style="text-align: center;">
         <Cat class="mx-auto my-5"/>
         <div class = enter-ment>
           <h1 id="header">Takofix Community</h1>
